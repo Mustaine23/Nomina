@@ -1,0 +1,15 @@
+﻿<Window x:Class="ProyectoNomina.w_adelantosPedidos"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ProyectoNomina"
+        mc:Ignorable="d"
+        Title="Solicitudes de Adelantos de Salario" Height="420.93" Width="767.442" Loaded="Window_Loaded">
+    <StackPanel>
+        <GroupBox Header="Solicitudes Cargadas" Height="350">
+            <DataGrid Name="dgSolicitudes"></DataGrid>
+        </GroupBox>
+        <Button x:Name="btnActualizar" Click ="btnActualizar_Click" Width="150" Content="Actualizar" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="304,0,305,0"/>
+    </StackPanel>
+</Window>
