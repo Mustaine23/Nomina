@@ -12,7 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
-namespace Pnomina
+namespace ProyectoNomina
 {
     /// <summary>
     /// Lógica de interacción para W_turno.xaml
@@ -37,7 +37,7 @@ namespace Pnomina
 
         void actualizargrilla()
         {
-            var turno = datos.Turno.ToList();
+            var turno = datos.Turnoes.ToList();
             dgvTurnos.ItemsSource = turno;
         }
 
@@ -48,7 +48,7 @@ namespace Pnomina
             pao.Hora_Salida = txthorasalida.Text.ToString();
             pao.Observaciones = txtobservacion.Text.ToString();
 
-            datos.Turno.Add(pao);
+            datos.Turnoes.Add(pao);
             datos.SaveChanges();
 
             limpiar();

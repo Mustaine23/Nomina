@@ -1,9 +1,9 @@
-﻿<Window x:Class="Pnomina.W_turno"
+﻿<Window x:Class="ProyectoNomina.W_turno"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:Pnomina"
+        xmlns:local="clr-namespace:ProyectoNomina"
         mc:Ignorable="d"
         Title="W_turno" Height="774.468" Width="488.298" Loaded="Window_Loaded">
     <Grid Margin="0,0,2,4">

@@ -19,13 +19,13 @@ namespace ProyectoNomina
     /// </summary>
     public partial class Login : Window
     {
-        ConexionBD datos;
+        ConexionDB datos;
         string vUser = string.Empty;
         string vPass = string.Empty;
         public Login()
         {
             InitializeComponent();
-            datos = new ConexionBD();
+            datos = new ConexionDB();
         }
 
         private void button_Click(object sender, RoutedEventArgs e)

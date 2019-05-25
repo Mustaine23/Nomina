@@ -19,11 +19,11 @@ namespace ProyectoNomina
     /// </summary>
     public partial class w_permisos : Window
     {
-        ConexionBD Datos;
+        ConexionDB Datos;
         public w_permisos()
         {
             InitializeComponent();
-            Datos = new ConexionBD();
+            Datos = new ConexionDB();
         }
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
