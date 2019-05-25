@@ -109,6 +109,12 @@
     <Compile Include="w_Empleado.xaml.cs">
       <DependentUpon>w_Empleado.xaml</DependentUpon>
     </Compile>
+    <Compile Include="w_permisos.xaml.cs">
+      <DependentUpon>w_permisos.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="W_turno.xaml.cs">
+      <DependentUpon>W_turno.xaml</DependentUpon>
+    </Compile>
     <Compile Include="w_vacacionesPedidos.xaml.cs">
       <DependentUpon>w_vacacionesPedidos.xaml</DependentUpon>
     </Compile>
@@ -133,6 +139,14 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="w_Empleado.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="w_permisos.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="W_turno.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
