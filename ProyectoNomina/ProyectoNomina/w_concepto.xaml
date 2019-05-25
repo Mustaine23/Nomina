@@ -1,0 +1,40 @@
+﻿<Window x:Class="ProyectoNomina.w_concepto"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ProyectoNomina"
+        mc:Ignorable="d"
+        Title="w_concepto" Height="561.629" Width="438.372" Loaded="Window_Loaded">
+    <Canvas Margin="0,0,0,17">
+        <GroupBox x:Name="groupBox" Header="Datos Concepto" Height="224" Width="410" Canvas.Left="10" Canvas.Top="10">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="150"></ColumnDefinition>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="42*"></RowDefinition>
+                    <RowDefinition Height="39*"></RowDefinition>
+                    <RowDefinition Height="94*"></RowDefinition>
+                </Grid.RowDefinitions>
+                <Label Grid.Column="0" Grid.Row="0" Content="Id_Concepto" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,10,42,6" Height="26" Width="71"></Label>
+                <Label Grid.Column="0" Content="Descripcion" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,1,41,10" Height="28" Width="72" Grid.Row="1"/>
+                <Label Grid.Column="0" Grid.Row="2" Content="Tipo" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,10,52,57" RenderTransformOrigin="-0.048,-2.081" Height="27" Width="61"></Label>
+                <TextBox Grid.Column="1" Grid.Row="0" Name="txtIdConcepto" IsReadOnly="True" />
+                <TextBox Grid.Column="1" Grid.Row="1" Name="txtDescripcion" Margin="0,5"/>
+                <TextBox Grid.Column="1" Grid.Row="2" Name="txtTipo" Margin="0,9,0,57"/>
+
+            </Grid>
+        </GroupBox>
+        
+
+        <GroupBox x:Name="groupBox1" Header="Conceptos" Canvas.Left="10" Canvas.Top="313" Height="191" Width="410">
+            <DataGrid x:Name="dgConceptos" Canvas.Left="23" Canvas.Top="472" Width="388" Margin="0,0,0,5"/>
+        </GroupBox>
+        <Button x:Name="btnLimpiar" Content="Limpiar" Canvas.Left="10" Canvas.Top="254" Width="93" RenderTransformOrigin="0.104,0.303"/>
+        <Button x:Name="btnAgregar" Content="Agregar" Canvas.Left="113" Canvas.Top="254" Width="93" Click="btnAgregar_Click"/>
+        <Button x:Name="btnModificar" Content="Modificar" Canvas.Left="221" Canvas.Top="254" Width="103"/>
+        <Button x:Name="btnEliminar" Content="Eliminar" Canvas.Left="329" Canvas.Top="254" Width="91"/>
+    </Canvas>
+</Window>
