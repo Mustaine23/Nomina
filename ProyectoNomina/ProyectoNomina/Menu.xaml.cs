@@ -58,5 +58,11 @@ namespace ProyectoNomina
         {
             this.Close();
         }
+
+        private void menuSalarios_Click(object sender, RoutedEventArgs e)
+        {
+            w_modificacionSalario venModiSal = new w_modificacionSalario();
+            venModiSal.ShowDialog();
+        }
     }
 }

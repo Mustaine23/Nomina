@@ -10,7 +10,8 @@
         <MenuItem Header="Mantenimientos">
             <MenuItem Header="Empleados" Name="menuEmpleados" Click="menuEmpleados_Click"/>
             <MenuItem Header="Turnos/Horarios" Name="menuTurnos"/>
-            <MenuItem Header="Conceptos" Name="menuConceptos" Click="menuConceptos_Click"/>          
+            <MenuItem Header="Conceptos" Name="menuConceptos" Click="menuConceptos_Click"/>
+            <MenuItem Header="Salarios de Empleados" Name="menuSalarios" Click="menuSalarios_Click"/>
         </MenuItem>
         <MenuItem Header="Anticipo Salarial">
             <MenuItem Header="Cargar Solicitud" Name="menuAdSalCargar"/>
