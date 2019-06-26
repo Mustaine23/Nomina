@@ -41,5 +41,57 @@ namespace ProyectoNomina
             var pedidosVacaciones = Datos.Vacaciones.ToList();
             dgPedidos.ItemsSource = pedidosVacaciones;
         }
+
+        private void btnAutorizar_Click(object sender, RoutedEventArgs e)
+        {
+            if (dgPedidos.SelectedItem != null)
+            {
+                Vacaciones vac = (Vacaciones)dgPedidos.SelectedItem;
+                if (vac.Estado == "pendiente")
+                {
+                    vac.Estado = "autorizado";
+
+                    Datos.Entry(vac).State = System.Data.Entity.EntityState.Modified;
+                    Datos.SaveChanges();
+
+                    MessageBox.Show("Se autorizó correctamente el pedido de vacaciones", "PROCESO COMPLETADO", MessageBoxButton.OK, MessageBoxImage.Information);
+                    pedidos();
+                }
+                else
+                {
+                    MessageBox.Show("El estado del pedido ya no es pendiente. Operacion no valida.", "ERROR", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+            }
+            else
+            {
+                MessageBox.Show("Debe seleccionar algún pedido para poder rechazarlo.", "ERROR", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+        }
+
+        private void btnRechazar_Click(object sender, RoutedEventArgs e)
+        {
+            if (dgPedidos.SelectedItem != null)
+            {
+                Vacaciones vac = (Vacaciones)dgPedidos.SelectedItem;
+                if (vac.Estado == "pendiente")
+                {
+                    vac.Estado = "rechazado";
+
+                    Datos.Entry(vac).State = System.Data.Entity.EntityState.Modified;
+                    Datos.SaveChanges();
+
+                    MessageBox.Show("Se rechazó correctamente el pedido de vacaciones", "PROCESO COMPLETADO", MessageBoxButton.OK, MessageBoxImage.Information);
+                    pedidos();
+                }
+                else
+                {
+                    MessageBox.Show("El estado del pedido ya no es pendiente. Operacion no valida.", "ERROR", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+            }
+            else
+            {
+                MessageBox.Show("Debe seleccionar algún pedido para poder rechazarlo.", "ERROR", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+        }
     }
 }

@@ -6,9 +6,11 @@
         xmlns:local="clr-namespace:ProyectoNomina"
         mc:Ignorable="d"
         Title="Pedidos de vacaciones" Height="341.86" Width="693.023" Loaded="Window_Loaded">
-    <Grid Margin="0,0,2,6">
+    <Canvas>
         <DataGrid x:Name="dgPedidos" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Height="242" Width="663"/>
-        <Button x:Name="btnCargar" Content="Cargar Pedidos" Click="btnCargar_Click" HorizontalAlignment="Left" Margin="261,263,0,0" VerticalAlignment="Top" Width="164"/>
+        <Button x:Name="btnCargar" Content="Cargar Pedidos" Click="btnCargar_Click" HorizontalAlignment="Left" VerticalAlignment="Top" Width="164" Height="39" Canvas.Left="265" Canvas.Top="258"/>
+        <Button x:Name="btnAutorizar" Content="Autorizar Pedido" Click="btnAutorizar_Click" HorizontalAlignment="Left" VerticalAlignment="Top" Width="164" Canvas.Left="455" Canvas.Top="257" Height="39"/>
+        <Button x:Name="btnRechazar" Content="Rechazar Pedido" Click="btnRechazar_Click" HorizontalAlignment="Left" VerticalAlignment="Top" Width="131" Canvas.Left="100" Canvas.Top="257" Height="39"/>
 
-    </Grid>
+    </Canvas>
 </Window>
