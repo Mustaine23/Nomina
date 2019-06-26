@@ -17,10 +17,12 @@ namespace ProyectoNomina
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Empleado()
         {
-            this.Anticipoes = new HashSet<Anticipo>();
-            this.Usuarios = new HashSet<Usuario>();
-            this.Permisos = new HashSet<Permiso>();
-            this.Vacaciones = new HashSet<Vacacione>();
+            this.Anticipo = new HashSet<Anticipo>();
+            this.Empleado_Salario_Historico = new HashSet<Empleado_Salario_Historico>();
+            this.Liquidacion_Mensual_Detalle = new HashSet<Liquidacion_Mensual_Detalle>();
+            this.Usuario = new HashSet<Usuario>();
+            this.Permisos = new HashSet<Permisos>();
+            this.Vacaciones = new HashSet<Vacaciones>();
         }
     
         public int Id_Empleado { get; set; }
@@ -33,14 +35,20 @@ namespace ProyectoNomina
         public Nullable<System.DateTime> Fecha_Incorporacion { get; set; }
         public string Imagen_Perfil { get; set; }
         public int Salario_Basico { get; set; }
+        public Nullable<int> Turno_Id { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Anticipo> Anticipoes { get; set; }
+        public virtual ICollection<Anticipo> Anticipo { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Usuario> Usuarios { get; set; }
+        public virtual ICollection<Empleado_Salario_Historico> Empleado_Salario_Historico { get; set; }
+        public virtual Turno Turno { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Permiso> Permisos { get; set; }
+        public virtual ICollection<Liquidacion_Mensual_Detalle> Liquidacion_Mensual_Detalle { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Vacacione> Vacaciones { get; set; }
+        public virtual ICollection<Usuario> Usuario { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Permisos> Permisos { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Vacaciones> Vacaciones { get; set; }
     }
 }

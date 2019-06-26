@@ -4,18 +4,28 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="9084f7095ad747099e115bd09bcdba85" Name="Diagram1">
-        <EntityTypeShape EntityType="NominaModel.Anticipo" Width="1.5" PointX="3" PointY="1.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="NominaModel.Concepto" Width="1.5" PointX="5.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="NominaModel.Empleado" Width="1.5" PointX="0.75" PointY="6" IsExpanded="true" />
-        <EntityTypeShape EntityType="NominaModel.Permiso" Width="1.5" PointX="3" PointY="5" IsExpanded="true" />
-        <EntityTypeShape EntityType="NominaModel.Turno" Width="1.5" PointX="5.75" PointY="3.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="NominaModel.Usuario" Width="1.5" PointX="3" PointY="8.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="NominaModel.Vacacione" Width="1.5" PointX="3" PointY="11.375" IsExpanded="true" />
+      <Diagram DiagramId="6c4cf04127c14ec497a90433cbae6caf" Name="Diagram1">
+        <EntityTypeShape EntityType="NominaModel.Anticipo" Width="1.5" PointX="5.25" PointY="5.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="NominaModel.Concepto" Width="1.5" PointX="7.5" PointY="11.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="NominaModel.Empleado" Width="1.5" PointX="3" PointY="9.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="NominaModel.Empleado_Salario_Historico" Width="1.5" PointX="7.5" PointY="14.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="NominaModel.Liquidacion_Mensual" Width="1.5" PointX="7.5" PointY="18.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="NominaModel.Liquidacion_Mensual_Detalle" Width="1.5" PointX="9.75" PointY="14.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="NominaModel.Permisos" Width="1.5" PointX="5.25" PointY="15.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="NominaModel.Turno" Width="1.5" PointX="0.75" PointY="10.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="NominaModel.Usuario" Width="1.5" PointX="5.25" PointY="19" IsExpanded="true" />
+        <EntityTypeShape EntityType="NominaModel.Vacaciones" Width="1.5" PointX="5.25" PointY="22.25" IsExpanded="true" />
         <AssociationConnector Association="NominaModel.FK_Anticipo_Empleado" ManuallyRouted="false" />
+        <AssociationConnector Association="NominaModel.FK__Liquidaci__Conce__29572725" ManuallyRouted="false" />
+        <AssociationConnector Association="NominaModel.FK__Empleado___Emple__2C3393D0" ManuallyRouted="false" />
+        <AssociationConnector Association="NominaModel.FK__Empleado__Turno___1FCDBCEB" ManuallyRouted="false" />
+        <AssociationConnector Association="NominaModel.FK__Liquidaci__Emple__286302EC" ManuallyRouted="false" />
         <AssociationConnector Association="NominaModel.FK_Empleado_Usuario" ManuallyRouted="false" />
         <AssociationConnector Association="NominaModel.FK_Permisos_Empleado" ManuallyRouted="false" />
         <AssociationConnector Association="NominaModel.FK_Vacaciones_Empleado" ManuallyRouted="false" />
+        <AssociationConnector Association="NominaModel.FK__Empleado___Usuar__2D27B809" ManuallyRouted="false" />
+        <AssociationConnector Association="NominaModel.FK__Liquidaci__Liqui__276EDEB3" ManuallyRouted="false" />
+        <AssociationConnector Association="NominaModel.FK__Liquidaci__Usuar__239E4DCF" ManuallyRouted="false" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

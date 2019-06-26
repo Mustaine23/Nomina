@@ -37,7 +37,7 @@ namespace ProyectoNomina
 
         void actualizargrilla()
         {
-            var turno = datos.Turnoes.ToList();
+            var turno = datos.Turno.ToList();
             dgvTurnos.ItemsSource = turno;
         }
 
@@ -48,7 +48,7 @@ namespace ProyectoNomina
             pao.Hora_Salida = txthorasalida.Text.ToString();
             pao.Observaciones = txtobservacion.Text.ToString();
 
-            datos.Turnoes.Add(pao);
+            datos.Turno.Add(pao);
             datos.SaveChanges();
 
             limpiar();

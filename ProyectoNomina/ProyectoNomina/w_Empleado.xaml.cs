@@ -41,7 +41,7 @@ namespace ProyectoNomina
                 em.Fecha_Incorporacion = DateTime.Parse(dtpFechaIncorporacion.Text);
                 em.Imagen_Perfil = imgPerfil.Source.ToString();
 
-                datos.Empleadoes.Add(em);
+                datos.Empleado.Add(em);
                 datos.SaveChanges();
 
                 MessageBox.Show("Empleado insertado correctamente.", "PROCESO FINALIZADO", MessageBoxButton.OK, MessageBoxImage.Information);
@@ -71,7 +71,7 @@ namespace ProyectoNomina
         void actualizarGrilla()
         {
             dgEmpleados.ItemsSource = null;
-            var dtEmpleados = datos.Empleadoes.ToList();
+            var dtEmpleados = datos.Empleado.ToList();
             dgEmpleados.ItemsSource = dtEmpleados;
         }
 

@@ -39,7 +39,7 @@ namespace ProyectoNomina
         void cargardatos()
         {
             dgSolicitudes.ItemsSource = null;
-            var solicitudes = datos.Anticipoes.ToList();
+            var solicitudes = datos.Anticipo.ToList();
             dgSolicitudes.ItemsSource = solicitudes;
         }
     }

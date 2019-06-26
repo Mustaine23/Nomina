@@ -6,16 +6,10 @@
         xmlns:local="clr-namespace:ProyectoNomina"
         mc:Ignorable="d"
         Title="Permisos" Height="341.86" Width="693.023" Loaded="Window_Loaded">
-    <Grid Margin="0,0,2,6">
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="23*"/>
-            <ColumnDefinition Width="36*"/>
-            <ColumnDefinition Width="69*"/>
-            <ColumnDefinition Width="28*"/>
-            <ColumnDefinition Width="527*"/>
-        </Grid.ColumnDefinitions>
+    <Canvas>
         <DataGrid x:Name="dgPermisos" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Height="242" Width="663" Grid.ColumnSpan="5"/>
-        <Button x:Name="btnCargarPermisos" Content="Cargar Permisos" Click="btnCargarPermisos_Click" HorizontalAlignment="Left" Margin="104.791,263,0,0" VerticalAlignment="Top" Width="164" Grid.Column="4"/>
-
-    </Grid>
+        <Button x:Name="btnCargarPermisos" Content="Actualizar Grilla" Click="btnCargarPermisos_Click" HorizontalAlignment="Left" VerticalAlignment="Top" Width="109" Grid.Column="4" Height="30" Canvas.Left="105" Canvas.Top="263"/>
+        <Button x:Name="btnAutorizarPermiso" Content="Autorizar Permiso" Click="btnAutorizarPermiso_Click" HorizontalAlignment="Left" VerticalAlignment="Top" Width="109" Grid.Column="4" Height="30" Canvas.Left="284" Canvas.Top="263"/>
+        <Button x:Name="btnRechazarPermiso" Content="Rechazar Permiso" Click="btnRechazarPermiso_Click" HorizontalAlignment="Left" VerticalAlignment="Top" Width="109" Grid.Column="4" Height="30" Canvas.Left="479" Canvas.Top="263"/>
+    </Canvas>
 </Window>

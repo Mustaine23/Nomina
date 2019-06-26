@@ -40,6 +40,39 @@
           <Property Name="Fecha_Incorporacion" Type="date" />
           <Property Name="Imagen_Perfil" Type="varchar" MaxLength="1000" />
           <Property Name="Salario_Basico" Type="int" Nullable="false" />
+          <Property Name="Turno_Id" Type="int" />
+        </EntityType>
+        <EntityType Name="Empleado_Salario_Historico">
+          <Key>
+            <PropertyRef Name="Id_Salario_Historico" />
+          </Key>
+          <Property Name="Id_Salario_Historico" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Empleado_Id" Type="int" Nullable="false" />
+          <Property Name="Salario_Basico_Anterior" Type="int" Nullable="false" />
+          <Property Name="Salario_Basico_Nuevo" Type="int" Nullable="false" />
+          <Property Name="Fecha_Hora" Type="datetime" Nullable="false" />
+          <Property Name="Usuario_Id" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Liquidacion_Mensual">
+          <Key>
+            <PropertyRef Name="Id_Liquidacion" />
+          </Key>
+          <Property Name="Id_Liquidacion" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Mes" Type="smallint" Nullable="false" />
+          <Property Name="Anho" Type="smallint" Nullable="false" />
+          <Property Name="Fecha_Generacion" Type="datetime" Nullable="false" />
+          <Property Name="Usuario_Id" Type="int" Nullable="false" />
+          <Property Name="Estado" Type="varchar" MaxLength="1" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Liquidacion_Mensual_Detalle">
+          <Key>
+            <PropertyRef Name="Id_Detalle" />
+          </Key>
+          <Property Name="Id_Detalle" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Liquidacion_Id" Type="int" Nullable="false" />
+          <Property Name="Empleado_Id" Type="int" Nullable="false" />
+          <Property Name="Concepto_Id" Type="int" Nullable="false" />
+          <Property Name="Monto" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="Permisos">
           <Key>
@@ -94,6 +127,90 @@ advertencia 6002: La tabla o vista 'Nomina.dbo.Vacaciones' no tiene definida nin
           <Property Name="Fecha_Definicion" Type="date" Nullable="false" />
           <Property Name="Observaciones" Type="varchar" MaxLength="1000" />
         </EntityType>
+        <Association Name="FK__Empleado___Emple__2C3393D0">
+          <End Role="Empleado" Type="Self.Empleado" Multiplicity="1" />
+          <End Role="Empleado_Salario_Historico" Type="Self.Empleado_Salario_Historico" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Empleado">
+              <PropertyRef Name="Id_Empleado" />
+            </Principal>
+            <Dependent Role="Empleado_Salario_Historico">
+              <PropertyRef Name="Empleado_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Empleado___Usuar__2D27B809">
+          <End Role="Usuario" Type="Self.Usuario" Multiplicity="1" />
+          <End Role="Empleado_Salario_Historico" Type="Self.Empleado_Salario_Historico" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="Id_Usuario" />
+            </Principal>
+            <Dependent Role="Empleado_Salario_Historico">
+              <PropertyRef Name="Usuario_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Empleado__Turno___1FCDBCEB">
+          <End Role="Turno" Type="Self.Turno" Multiplicity="0..1" />
+          <End Role="Empleado" Type="Self.Empleado" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Turno">
+              <PropertyRef Name="Id_Turno" />
+            </Principal>
+            <Dependent Role="Empleado">
+              <PropertyRef Name="Turno_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Liquidaci__Conce__29572725">
+          <End Role="Concepto" Type="Self.Concepto" Multiplicity="1" />
+          <End Role="Liquidacion_Mensual_Detalle" Type="Self.Liquidacion_Mensual_Detalle" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Concepto">
+              <PropertyRef Name="Id_Concepto" />
+            </Principal>
+            <Dependent Role="Liquidacion_Mensual_Detalle">
+              <PropertyRef Name="Concepto_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Liquidaci__Emple__286302EC">
+          <End Role="Empleado" Type="Self.Empleado" Multiplicity="1" />
+          <End Role="Liquidacion_Mensual_Detalle" Type="Self.Liquidacion_Mensual_Detalle" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Empleado">
+              <PropertyRef Name="Id_Empleado" />
+            </Principal>
+            <Dependent Role="Liquidacion_Mensual_Detalle">
+              <PropertyRef Name="Empleado_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Liquidaci__Liqui__276EDEB3">
+          <End Role="Liquidacion_Mensual" Type="Self.Liquidacion_Mensual" Multiplicity="1" />
+          <End Role="Liquidacion_Mensual_Detalle" Type="Self.Liquidacion_Mensual_Detalle" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Liquidacion_Mensual">
+              <PropertyRef Name="Id_Liquidacion" />
+            </Principal>
+            <Dependent Role="Liquidacion_Mensual_Detalle">
+              <PropertyRef Name="Liquidacion_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Liquidaci__Usuar__239E4DCF">
+          <End Role="Usuario" Type="Self.Usuario" Multiplicity="1" />
+          <End Role="Liquidacion_Mensual" Type="Self.Liquidacion_Mensual" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="Id_Usuario" />
+            </Principal>
+            <Dependent Role="Liquidacion_Mensual">
+              <PropertyRef Name="Usuario_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Anticipo_Empleado">
           <End Role="Empleado" Type="Self.Empleado" Multiplicity="1" />
           <End Role="Anticipo" Type="Self.Anticipo" Multiplicity="*" />
@@ -146,6 +263,9 @@ advertencia 6002: La tabla o vista 'Nomina.dbo.Vacaciones' no tiene definida nin
           <EntitySet Name="Anticipo" EntityType="Self.Anticipo" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Concepto" EntityType="Self.Concepto" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Empleado" EntityType="Self.Empleado" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Empleado_Salario_Historico" EntityType="Self.Empleado_Salario_Historico" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Liquidacion_Mensual" EntityType="Self.Liquidacion_Mensual" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Liquidacion_Mensual_Detalle" EntityType="Self.Liquidacion_Mensual_Detalle" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Permisos" EntityType="Self.Permisos" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Turno" EntityType="Self.Turno" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Usuario" EntityType="Self.Usuario" Schema="dbo" store:Type="Tables" />
@@ -161,6 +281,34 @@ advertencia 6002: La tabla o vista 'Nomina.dbo.Vacaciones' no tiene definida nin
     [Vacaciones].[Observaciones] AS [Observaciones]
     FROM [dbo].[Vacaciones] AS [Vacaciones]</DefiningQuery>
           </EntitySet>
+          <AssociationSet Name="FK__Empleado___Emple__2C3393D0" Association="Self.FK__Empleado___Emple__2C3393D0">
+            <End Role="Empleado" EntitySet="Empleado" />
+            <End Role="Empleado_Salario_Historico" EntitySet="Empleado_Salario_Historico" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Empleado___Usuar__2D27B809" Association="Self.FK__Empleado___Usuar__2D27B809">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="Empleado_Salario_Historico" EntitySet="Empleado_Salario_Historico" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Empleado__Turno___1FCDBCEB" Association="Self.FK__Empleado__Turno___1FCDBCEB">
+            <End Role="Turno" EntitySet="Turno" />
+            <End Role="Empleado" EntitySet="Empleado" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Liquidaci__Conce__29572725" Association="Self.FK__Liquidaci__Conce__29572725">
+            <End Role="Concepto" EntitySet="Concepto" />
+            <End Role="Liquidacion_Mensual_Detalle" EntitySet="Liquidacion_Mensual_Detalle" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Liquidaci__Emple__286302EC" Association="Self.FK__Liquidaci__Emple__286302EC">
+            <End Role="Empleado" EntitySet="Empleado" />
+            <End Role="Liquidacion_Mensual_Detalle" EntitySet="Liquidacion_Mensual_Detalle" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Liquidaci__Liqui__276EDEB3" Association="Self.FK__Liquidaci__Liqui__276EDEB3">
+            <End Role="Liquidacion_Mensual" EntitySet="Liquidacion_Mensual" />
+            <End Role="Liquidacion_Mensual_Detalle" EntitySet="Liquidacion_Mensual_Detalle" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Liquidaci__Usuar__239E4DCF" Association="Self.FK__Liquidaci__Usuar__239E4DCF">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="Liquidacion_Mensual" EntitySet="Liquidacion_Mensual" />
+          </AssociationSet>
           <AssociationSet Name="FK_Anticipo_Empleado" Association="Self.FK_Anticipo_Empleado">
             <End Role="Empleado" EntitySet="Empleado" />
             <End Role="Anticipo" EntitySet="Anticipo" />
@@ -204,6 +352,7 @@ advertencia 6002: La tabla o vista 'Nomina.dbo.Vacaciones' no tiene definida nin
           <Property Name="Id_Concepto" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Descripcion" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Tipo" Type="String" MaxLength="1" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Liquidacion_Mensual_Detalle" Relationship="Self.FK__Liquidaci__Conce__29572725" FromRole="Concepto" ToRole="Liquidacion_Mensual_Detalle" />
         </EntityType>
         <EntityType Name="Empleado">
           <Key>
@@ -219,12 +368,55 @@ advertencia 6002: La tabla o vista 'Nomina.dbo.Vacaciones' no tiene definida nin
           <Property Name="Fecha_Incorporacion" Type="DateTime" Precision="0" />
           <Property Name="Imagen_Perfil" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
           <Property Name="Salario_Basico" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Anticipoes" Relationship="Self.FK_Anticipo_Empleado" FromRole="Empleado" ToRole="Anticipo" />
-          <NavigationProperty Name="Usuarios" Relationship="Self.FK_Empleado_Usuario" FromRole="Empleado" ToRole="Usuario" />
+          <Property Name="Turno_Id" Type="Int32" />
+          <NavigationProperty Name="Anticipo" Relationship="Self.FK_Anticipo_Empleado" FromRole="Empleado" ToRole="Anticipo" />
+          <NavigationProperty Name="Empleado_Salario_Historico" Relationship="Self.FK__Empleado___Emple__2C3393D0" FromRole="Empleado" ToRole="Empleado_Salario_Historico" />
+          <NavigationProperty Name="Turno" Relationship="Self.FK__Empleado__Turno___1FCDBCEB" FromRole="Empleado" ToRole="Turno" />
+          <NavigationProperty Name="Liquidacion_Mensual_Detalle" Relationship="Self.FK__Liquidaci__Emple__286302EC" FromRole="Empleado" ToRole="Liquidacion_Mensual_Detalle" />
+          <NavigationProperty Name="Usuario" Relationship="Self.FK_Empleado_Usuario" FromRole="Empleado" ToRole="Usuario" />
           <NavigationProperty Name="Permisos" Relationship="Self.FK_Permisos_Empleado" FromRole="Empleado" ToRole="Permisos" />
           <NavigationProperty Name="Vacaciones" Relationship="Self.FK_Vacaciones_Empleado" FromRole="Empleado" ToRole="Vacaciones" />
         </EntityType>
-        <EntityType Name="Permiso">
+        <EntityType Name="Empleado_Salario_Historico">
+          <Key>
+            <PropertyRef Name="Id_Salario_Historico" />
+          </Key>
+          <Property Name="Id_Salario_Historico" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Empleado_Id" Type="Int32" Nullable="false" />
+          <Property Name="Salario_Basico_Anterior" Type="Int32" Nullable="false" />
+          <Property Name="Salario_Basico_Nuevo" Type="Int32" Nullable="false" />
+          <Property Name="Fecha_Hora" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Usuario_Id" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Empleado" Relationship="Self.FK__Empleado___Emple__2C3393D0" FromRole="Empleado_Salario_Historico" ToRole="Empleado" />
+          <NavigationProperty Name="Usuario" Relationship="Self.FK__Empleado___Usuar__2D27B809" FromRole="Empleado_Salario_Historico" ToRole="Usuario" />
+        </EntityType>
+        <EntityType Name="Liquidacion_Mensual">
+          <Key>
+            <PropertyRef Name="Id_Liquidacion" />
+          </Key>
+          <Property Name="Id_Liquidacion" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Mes" Type="Int16" Nullable="false" />
+          <Property Name="Anho" Type="Int16" Nullable="false" />
+          <Property Name="Fecha_Generacion" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Usuario_Id" Type="Int32" Nullable="false" />
+          <Property Name="Estado" Type="String" MaxLength="1" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Liquidacion_Mensual_Detalle" Relationship="Self.FK__Liquidaci__Liqui__276EDEB3" FromRole="Liquidacion_Mensual" ToRole="Liquidacion_Mensual_Detalle" />
+          <NavigationProperty Name="Usuario" Relationship="Self.FK__Liquidaci__Usuar__239E4DCF" FromRole="Liquidacion_Mensual" ToRole="Usuario" />
+        </EntityType>
+        <EntityType Name="Liquidacion_Mensual_Detalle">
+          <Key>
+            <PropertyRef Name="Id_Detalle" />
+          </Key>
+          <Property Name="Id_Detalle" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Liquidacion_Id" Type="Int32" Nullable="false" />
+          <Property Name="Empleado_Id" Type="Int32" Nullable="false" />
+          <Property Name="Concepto_Id" Type="Int32" Nullable="false" />
+          <Property Name="Monto" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Concepto" Relationship="Self.FK__Liquidaci__Conce__29572725" FromRole="Liquidacion_Mensual_Detalle" ToRole="Concepto" />
+          <NavigationProperty Name="Empleado" Relationship="Self.FK__Liquidaci__Emple__286302EC" FromRole="Liquidacion_Mensual_Detalle" ToRole="Empleado" />
+          <NavigationProperty Name="Liquidacion_Mensual" Relationship="Self.FK__Liquidaci__Liqui__276EDEB3" FromRole="Liquidacion_Mensual_Detalle" ToRole="Liquidacion_Mensual" />
+        </EntityType>
+        <EntityType Name="Permisos">
           <Key>
             <PropertyRef Name="Id_Permiso" />
           </Key>
@@ -247,6 +439,7 @@ advertencia 6002: La tabla o vista 'Nomina.dbo.Vacaciones' no tiene definida nin
           <Property Name="Hora_Entrada" Type="String" MaxLength="5" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Hora_Salida" Type="String" MaxLength="5" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Observaciones" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Empleado" Relationship="Self.FK__Empleado__Turno___1FCDBCEB" FromRole="Turno" ToRole="Empleado" />
         </EntityType>
         <EntityType Name="Usuario">
           <Key>
@@ -257,8 +450,10 @@ advertencia 6002: La tabla o vista 'Nomina.dbo.Vacaciones' no tiene definida nin
           <Property Name="Password" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Empleado_Id" Type="Int32" />
           <NavigationProperty Name="Empleado" Relationship="Self.FK_Empleado_Usuario" FromRole="Usuario" ToRole="Empleado" />
+          <NavigationProperty Name="Empleado_Salario_Historico" Relationship="Self.FK__Empleado___Usuar__2D27B809" FromRole="Usuario" ToRole="Empleado_Salario_Historico" />
+          <NavigationProperty Name="Liquidacion_Mensual" Relationship="Self.FK__Liquidaci__Usuar__239E4DCF" FromRole="Usuario" ToRole="Liquidacion_Mensual" />
         </EntityType>
-        <EntityType Name="Vacacione">
+        <EntityType Name="Vacaciones">
           <Key>
             <PropertyRef Name="Id_Vacaciones" />
             <PropertyRef Name="Empleado_Id" />
@@ -290,6 +485,54 @@ advertencia 6002: La tabla o vista 'Nomina.dbo.Vacaciones' no tiene definida nin
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK__Liquidaci__Conce__29572725">
+          <End Role="Concepto" Type="Self.Concepto" Multiplicity="1" />
+          <End Role="Liquidacion_Mensual_Detalle" Type="Self.Liquidacion_Mensual_Detalle" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Concepto">
+              <PropertyRef Name="Id_Concepto" />
+            </Principal>
+            <Dependent Role="Liquidacion_Mensual_Detalle">
+              <PropertyRef Name="Concepto_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Empleado___Emple__2C3393D0">
+          <End Role="Empleado" Type="Self.Empleado" Multiplicity="1" />
+          <End Role="Empleado_Salario_Historico" Type="Self.Empleado_Salario_Historico" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Empleado">
+              <PropertyRef Name="Id_Empleado" />
+            </Principal>
+            <Dependent Role="Empleado_Salario_Historico">
+              <PropertyRef Name="Empleado_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Empleado__Turno___1FCDBCEB">
+          <End Role="Turno" Type="Self.Turno" Multiplicity="0..1" />
+          <End Role="Empleado" Type="Self.Empleado" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Turno">
+              <PropertyRef Name="Id_Turno" />
+            </Principal>
+            <Dependent Role="Empleado">
+              <PropertyRef Name="Turno_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Liquidaci__Emple__286302EC">
+          <End Role="Empleado" Type="Self.Empleado" Multiplicity="1" />
+          <End Role="Liquidacion_Mensual_Detalle" Type="Self.Liquidacion_Mensual_Detalle" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Empleado">
+              <PropertyRef Name="Id_Empleado" />
+            </Principal>
+            <Dependent Role="Liquidacion_Mensual_Detalle">
+              <PropertyRef Name="Empleado_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Empleado_Usuario">
           <End Role="Empleado" Type="Self.Empleado" Multiplicity="0..1" />
           <End Role="Usuario" Type="Self.Usuario" Multiplicity="*" />
@@ -304,7 +547,7 @@ advertencia 6002: La tabla o vista 'Nomina.dbo.Vacaciones' no tiene definida nin
         </Association>
         <Association Name="FK_Permisos_Empleado">
           <End Role="Empleado" Type="Self.Empleado" Multiplicity="1" />
-          <End Role="Permisos" Type="Self.Permiso" Multiplicity="*" />
+          <End Role="Permisos" Type="Self.Permisos" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Empleado">
               <PropertyRef Name="Id_Empleado" />
@@ -316,7 +559,7 @@ advertencia 6002: La tabla o vista 'Nomina.dbo.Vacaciones' no tiene definida nin
         </Association>
         <Association Name="FK_Vacaciones_Empleado">
           <End Role="Empleado" Type="Self.Empleado" Multiplicity="1" />
-          <End Role="Vacaciones" Type="Self.Vacacione" Multiplicity="*" />
+          <End Role="Vacaciones" Type="Self.Vacaciones" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Empleado">
               <PropertyRef Name="Id_Empleado" />
@@ -326,29 +569,96 @@ advertencia 6002: La tabla o vista 'Nomina.dbo.Vacaciones' no tiene definida nin
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK__Empleado___Usuar__2D27B809">
+          <End Role="Usuario" Type="Self.Usuario" Multiplicity="1" />
+          <End Role="Empleado_Salario_Historico" Type="Self.Empleado_Salario_Historico" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="Id_Usuario" />
+            </Principal>
+            <Dependent Role="Empleado_Salario_Historico">
+              <PropertyRef Name="Usuario_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Liquidaci__Liqui__276EDEB3">
+          <End Role="Liquidacion_Mensual" Type="Self.Liquidacion_Mensual" Multiplicity="1" />
+          <End Role="Liquidacion_Mensual_Detalle" Type="Self.Liquidacion_Mensual_Detalle" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Liquidacion_Mensual">
+              <PropertyRef Name="Id_Liquidacion" />
+            </Principal>
+            <Dependent Role="Liquidacion_Mensual_Detalle">
+              <PropertyRef Name="Liquidacion_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Liquidaci__Usuar__239E4DCF">
+          <End Role="Usuario" Type="Self.Usuario" Multiplicity="1" />
+          <End Role="Liquidacion_Mensual" Type="Self.Liquidacion_Mensual" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="Id_Usuario" />
+            </Principal>
+            <Dependent Role="Liquidacion_Mensual">
+              <PropertyRef Name="Usuario_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityContainer Name="ConexionDB" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="Anticipoes" EntityType="Self.Anticipo" />
-          <EntitySet Name="Conceptoes" EntityType="Self.Concepto" />
-          <EntitySet Name="Empleadoes" EntityType="Self.Empleado" />
-          <EntitySet Name="Permisos" EntityType="Self.Permiso" />
-          <EntitySet Name="Turnoes" EntityType="Self.Turno" />
-          <EntitySet Name="Usuarios" EntityType="Self.Usuario" />
-          <EntitySet Name="Vacaciones" EntityType="Self.Vacacione" />
+          <EntitySet Name="Anticipo" EntityType="Self.Anticipo" />
+          <EntitySet Name="Concepto" EntityType="Self.Concepto" />
+          <EntitySet Name="Empleado" EntityType="Self.Empleado" />
+          <EntitySet Name="Empleado_Salario_Historico" EntityType="Self.Empleado_Salario_Historico" />
+          <EntitySet Name="Liquidacion_Mensual" EntityType="Self.Liquidacion_Mensual" />
+          <EntitySet Name="Liquidacion_Mensual_Detalle" EntityType="Self.Liquidacion_Mensual_Detalle" />
+          <EntitySet Name="Permisos" EntityType="Self.Permisos" />
+          <EntitySet Name="Turno" EntityType="Self.Turno" />
+          <EntitySet Name="Usuario" EntityType="Self.Usuario" />
+          <EntitySet Name="Vacaciones" EntityType="Self.Vacaciones" />
           <AssociationSet Name="FK_Anticipo_Empleado" Association="Self.FK_Anticipo_Empleado">
-            <End Role="Empleado" EntitySet="Empleadoes" />
-            <End Role="Anticipo" EntitySet="Anticipoes" />
+            <End Role="Empleado" EntitySet="Empleado" />
+            <End Role="Anticipo" EntitySet="Anticipo" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Liquidaci__Conce__29572725" Association="Self.FK__Liquidaci__Conce__29572725">
+            <End Role="Concepto" EntitySet="Concepto" />
+            <End Role="Liquidacion_Mensual_Detalle" EntitySet="Liquidacion_Mensual_Detalle" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Empleado___Emple__2C3393D0" Association="Self.FK__Empleado___Emple__2C3393D0">
+            <End Role="Empleado" EntitySet="Empleado" />
+            <End Role="Empleado_Salario_Historico" EntitySet="Empleado_Salario_Historico" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Empleado__Turno___1FCDBCEB" Association="Self.FK__Empleado__Turno___1FCDBCEB">
+            <End Role="Turno" EntitySet="Turno" />
+            <End Role="Empleado" EntitySet="Empleado" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Liquidaci__Emple__286302EC" Association="Self.FK__Liquidaci__Emple__286302EC">
+            <End Role="Empleado" EntitySet="Empleado" />
+            <End Role="Liquidacion_Mensual_Detalle" EntitySet="Liquidacion_Mensual_Detalle" />
           </AssociationSet>
           <AssociationSet Name="FK_Empleado_Usuario" Association="Self.FK_Empleado_Usuario">
-            <End Role="Empleado" EntitySet="Empleadoes" />
-            <End Role="Usuario" EntitySet="Usuarios" />
+            <End Role="Empleado" EntitySet="Empleado" />
+            <End Role="Usuario" EntitySet="Usuario" />
           </AssociationSet>
           <AssociationSet Name="FK_Permisos_Empleado" Association="Self.FK_Permisos_Empleado">
-            <End Role="Empleado" EntitySet="Empleadoes" />
+            <End Role="Empleado" EntitySet="Empleado" />
             <End Role="Permisos" EntitySet="Permisos" />
           </AssociationSet>
           <AssociationSet Name="FK_Vacaciones_Empleado" Association="Self.FK_Vacaciones_Empleado">
-            <End Role="Empleado" EntitySet="Empleadoes" />
+            <End Role="Empleado" EntitySet="Empleado" />
             <End Role="Vacaciones" EntitySet="Vacaciones" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Empleado___Usuar__2D27B809" Association="Self.FK__Empleado___Usuar__2D27B809">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="Empleado_Salario_Historico" EntitySet="Empleado_Salario_Historico" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Liquidaci__Liqui__276EDEB3" Association="Self.FK__Liquidaci__Liqui__276EDEB3">
+            <End Role="Liquidacion_Mensual" EntitySet="Liquidacion_Mensual" />
+            <End Role="Liquidacion_Mensual_Detalle" EntitySet="Liquidacion_Mensual_Detalle" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Liquidaci__Usuar__239E4DCF" Association="Self.FK__Liquidaci__Usuar__239E4DCF">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="Liquidacion_Mensual" EntitySet="Liquidacion_Mensual" />
           </AssociationSet>
         </EntityContainer>
       </Schema>
@@ -357,7 +667,7 @@ advertencia 6002: La tabla o vista 'Nomina.dbo.Vacaciones' no tiene definida nin
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="NominaModelStoreContainer" CdmEntityContainer="ConexionDB">
-          <EntitySetMapping Name="Anticipoes">
+          <EntitySetMapping Name="Anticipo">
             <EntityTypeMapping TypeName="NominaModel.Anticipo">
               <MappingFragment StoreEntitySet="Anticipo">
                 <ScalarProperty Name="Id_Anticipo" ColumnName="Id_Anticipo" />
@@ -371,7 +681,7 @@ advertencia 6002: La tabla o vista 'Nomina.dbo.Vacaciones' no tiene definida nin
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Conceptoes">
+          <EntitySetMapping Name="Concepto">
             <EntityTypeMapping TypeName="NominaModel.Concepto">
               <MappingFragment StoreEntitySet="Concepto">
                 <ScalarProperty Name="Id_Concepto" ColumnName="Id_Concepto" />
@@ -380,7 +690,7 @@ advertencia 6002: La tabla o vista 'Nomina.dbo.Vacaciones' no tiene definida nin
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Empleadoes">
+          <EntitySetMapping Name="Empleado">
             <EntityTypeMapping TypeName="NominaModel.Empleado">
               <MappingFragment StoreEntitySet="Empleado">
                 <ScalarProperty Name="Id_Empleado" ColumnName="Id_Empleado" />
@@ -393,11 +703,47 @@ advertencia 6002: La tabla o vista 'Nomina.dbo.Vacaciones' no tiene definida nin
                 <ScalarProperty Name="Fecha_Incorporacion" ColumnName="Fecha_Incorporacion" />
                 <ScalarProperty Name="Imagen_Perfil" ColumnName="Imagen_Perfil" />
                 <ScalarProperty Name="Salario_Basico" ColumnName="Salario_Basico" />
+                <ScalarProperty Name="Turno_Id" ColumnName="Turno_Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Empleado_Salario_Historico">
+            <EntityTypeMapping TypeName="NominaModel.Empleado_Salario_Historico">
+              <MappingFragment StoreEntitySet="Empleado_Salario_Historico">
+                <ScalarProperty Name="Id_Salario_Historico" ColumnName="Id_Salario_Historico" />
+                <ScalarProperty Name="Empleado_Id" ColumnName="Empleado_Id" />
+                <ScalarProperty Name="Salario_Basico_Anterior" ColumnName="Salario_Basico_Anterior" />
+                <ScalarProperty Name="Salario_Basico_Nuevo" ColumnName="Salario_Basico_Nuevo" />
+                <ScalarProperty Name="Fecha_Hora" ColumnName="Fecha_Hora" />
+                <ScalarProperty Name="Usuario_Id" ColumnName="Usuario_Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Liquidacion_Mensual">
+            <EntityTypeMapping TypeName="NominaModel.Liquidacion_Mensual">
+              <MappingFragment StoreEntitySet="Liquidacion_Mensual">
+                <ScalarProperty Name="Id_Liquidacion" ColumnName="Id_Liquidacion" />
+                <ScalarProperty Name="Mes" ColumnName="Mes" />
+                <ScalarProperty Name="Anho" ColumnName="Anho" />
+                <ScalarProperty Name="Fecha_Generacion" ColumnName="Fecha_Generacion" />
+                <ScalarProperty Name="Usuario_Id" ColumnName="Usuario_Id" />
+                <ScalarProperty Name="Estado" ColumnName="Estado" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Liquidacion_Mensual_Detalle">
+            <EntityTypeMapping TypeName="NominaModel.Liquidacion_Mensual_Detalle">
+              <MappingFragment StoreEntitySet="Liquidacion_Mensual_Detalle">
+                <ScalarProperty Name="Id_Detalle" ColumnName="Id_Detalle" />
+                <ScalarProperty Name="Liquidacion_Id" ColumnName="Liquidacion_Id" />
+                <ScalarProperty Name="Empleado_Id" ColumnName="Empleado_Id" />
+                <ScalarProperty Name="Concepto_Id" ColumnName="Concepto_Id" />
+                <ScalarProperty Name="Monto" ColumnName="Monto" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Permisos">
-            <EntityTypeMapping TypeName="NominaModel.Permiso">
+            <EntityTypeMapping TypeName="NominaModel.Permisos">
               <MappingFragment StoreEntitySet="Permisos">
                 <ScalarProperty Name="Id_Permiso" ColumnName="Id_Permiso" />
                 <ScalarProperty Name="Empleado_Id" ColumnName="Empleado_Id" />
@@ -411,7 +757,7 @@ advertencia 6002: La tabla o vista 'Nomina.dbo.Vacaciones' no tiene definida nin
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Turnoes">
+          <EntitySetMapping Name="Turno">
             <EntityTypeMapping TypeName="NominaModel.Turno">
               <MappingFragment StoreEntitySet="Turno">
                 <ScalarProperty Name="Id_Turno" ColumnName="Id_Turno" />
@@ -421,7 +767,7 @@ advertencia 6002: La tabla o vista 'Nomina.dbo.Vacaciones' no tiene definida nin
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Usuarios">
+          <EntitySetMapping Name="Usuario">
             <EntityTypeMapping TypeName="NominaModel.Usuario">
               <MappingFragment StoreEntitySet="Usuario">
                 <ScalarProperty Name="Id_Usuario" ColumnName="Id_Usuario" />
@@ -432,7 +778,7 @@ advertencia 6002: La tabla o vista 'Nomina.dbo.Vacaciones' no tiene definida nin
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Vacaciones">
-            <EntityTypeMapping TypeName="NominaModel.Vacacione">
+            <EntityTypeMapping TypeName="NominaModel.Vacaciones">
               <MappingFragment StoreEntitySet="Vacaciones">
                 <ScalarProperty Name="Id_Vacaciones" ColumnName="Id_Vacaciones" />
                 <ScalarProperty Name="Empleado_Id" ColumnName="Empleado_Id" />
@@ -459,7 +805,7 @@ advertencia 6002: La tabla o vista 'Nomina.dbo.Vacaciones' no tiene definida nin
     <Options>
       <DesignerInfoPropertySet>
         <DesignerProperty Name="ValidateOnBuild" Value="true" />
-        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
         <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
         <DesignerProperty Name="UseLegacyProvider" Value="false" />
         <DesignerProperty Name="CodeGenerationStrategy" Value="Ninguno" />

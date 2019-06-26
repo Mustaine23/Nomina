@@ -35,12 +35,12 @@ namespace ProyectoNomina
                 em.Tipo = txtTipo.Text.Trim();
                 
 
-                datos.Conceptoes.Add(em);
+                datos.Concepto.Add(em);
                 datos.SaveChanges();
 
                 MessageBox.Show("Concepto insertado correctamente.", "PROCESO FINALIZADO", MessageBoxButton.OK, MessageBoxImage.Information);
                 LimpiarCampos();
-    }
+            }
             catch (Exception ex)
             {
                 MessageBox.Show("Ocurrió el siguiente error: " + ex.ToString(), "ERROR", MessageBoxButton.OK, MessageBoxImage.Error);
@@ -58,7 +58,7 @@ namespace ProyectoNomina
         void actualizarGrilla()
         {
             dgConceptos.ItemsSource = null;
-            var dtConcepto = datos.Conceptoes.ToList();
+            var dtConcepto = datos.Concepto.ToList();
             dgConceptos.ItemsSource = dtConcepto;
         }
         private void Window_Loaded(object sender, RoutedEventArgs e)

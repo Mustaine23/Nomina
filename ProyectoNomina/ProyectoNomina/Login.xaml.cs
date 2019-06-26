@@ -79,7 +79,7 @@ namespace ProyectoNomina
             string resultado = "OK";
             bool existeUser = false;
 
-            var lstUsuarios = datos.Usuarios.ToList();
+            var lstUsuarios = datos.Usuario.ToList();
 
             foreach (Usuario user in lstUsuarios)
             {
