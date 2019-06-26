@@ -42,5 +42,57 @@ namespace ProyectoNomina
             var solicitudes = datos.Anticipo.ToList();
             dgSolicitudes.ItemsSource = solicitudes;
         }
+
+        private void btnAutorizar_Click(object sender, RoutedEventArgs e)
+        {
+            if (dgSolicitudes.SelectedItem != null)
+            {
+                Anticipo ant = (Anticipo)dgSolicitudes.SelectedItem;
+                if (ant.Estado == "pendiente")
+                {
+                    ant.Estado = "autorizado";
+
+                    datos.Entry(ant).State = System.Data.Entity.EntityState.Modified;
+                    datos.SaveChanges();
+
+                    MessageBox.Show("Se autorizó correctamente el aniticipo", "PROCESO COMPLETADO", MessageBoxButton.OK, MessageBoxImage.Information);
+                    cargardatos();
+                }
+                else
+                {
+                    MessageBox.Show("El estado del aniticipo ya no es pendiente. Operacion no valida.", "ERROR", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+            }
+            else
+            {
+                MessageBox.Show("Debe seleccionar algún aniticipo para poder autorizarlo.", "ERROR", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+        }
+
+        private void btnRechazar_Click(object sender, RoutedEventArgs e)
+        {
+            if (dgSolicitudes.SelectedItem != null)
+            {
+                Anticipo ant = (Anticipo)dgSolicitudes.SelectedItem;
+                if (ant.Estado == "pendiente")
+                {
+                    ant.Estado = "Rechazado";
+
+                    datos.Entry(ant).State = System.Data.Entity.EntityState.Modified;
+                    datos.SaveChanges();
+
+                    MessageBox.Show("Se Rechazó correctamente el aniticipo", "PROCESO COMPLETADO", MessageBoxButton.OK, MessageBoxImage.Information);
+                    cargardatos();
+                }
+                else
+                {
+                    MessageBox.Show("El estado del aniticipo ya no es pendiente. Operacion no valida.", "ERROR", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+            }
+            else
+            {
+                MessageBox.Show("Debe seleccionar algún aniticipo para poder rechazarlo.", "ERROR", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+        }
     }
 }

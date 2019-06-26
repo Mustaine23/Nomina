@@ -6,10 +6,12 @@
         xmlns:local="clr-namespace:ProyectoNomina"
         mc:Ignorable="d"
         Title="Solicitudes de Adelantos de Salario" Height="420.93" Width="767.442" Loaded="Window_Loaded">
-    <StackPanel>
-        <GroupBox Header="Solicitudes Cargadas" Height="350">
+    <Canvas>
+        <GroupBox Header="Solicitudes Cargadas" Height="321" Width="751">
             <DataGrid Name="dgSolicitudes"></DataGrid>
         </GroupBox>
-        <Button x:Name="btnActualizar" Click ="btnActualizar_Click" Width="150" Content="Actualizar" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="304,0,305,0"/>
-    </StackPanel>
+        <Button x:Name="btnActualizar" Click ="btnActualizar_Click" Width="150" Content="Actualizar" HorizontalAlignment="Center" VerticalAlignment="Center" Canvas.Left="75" Canvas.Top="335" Height="36"/>
+        <Button x:Name="btnAutorizar" Click ="btnAutorizar_Click" Width="150" Content="Autorizar" HorizontalAlignment="Center" VerticalAlignment="Center" Canvas.Left="504" Canvas.Top="335" Height="36"/>
+        <Button x:Name="btnRechazar" Click ="btnRechazar_Click" Width="150" Content="Rechazar" HorizontalAlignment="Center" VerticalAlignment="Center" Canvas.Left="296" Canvas.Top="335" Height="36"/>
+    </Canvas>
 </Window>
