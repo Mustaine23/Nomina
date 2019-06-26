@@ -128,6 +128,9 @@
     <Compile Include="w_adelantosPedidos.xaml.cs">
       <DependentUpon>w_adelantosPedidos.xaml</DependentUpon>
     </Compile>
+    <Compile Include="w_AsignacionTurnos.xaml.cs">
+      <DependentUpon>w_AsignacionTurnos.xaml</DependentUpon>
+    </Compile>
     <Compile Include="w_concepto.xaml.cs">
       <DependentUpon>w_concepto.xaml</DependentUpon>
     </Compile>
@@ -169,6 +172,10 @@
     <Page Include="w_adelantosPedidos.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="w_AsignacionTurnos.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="w_concepto.xaml">
       <Generator>MSBuild:Compile</Generator>

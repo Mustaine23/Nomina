@@ -70,5 +70,11 @@ namespace ProyectoNomina
             W_turno venTurno = new W_turno();
             venTurno.ShowDialog();
         }
+
+        private void menuAsignaTurnos_Click(object sender, RoutedEventArgs e)
+        {
+            w_AsignacionTurnos ss = new w_AsignacionTurnos();
+            ss.ShowDialog();
+        }
     }
 }

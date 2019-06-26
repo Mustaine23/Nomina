@@ -12,6 +12,7 @@
             <MenuItem Header="Turnos/Horarios" Name="menuTurnos" Click="menuTurnos_Click"/>
             <MenuItem Header="Conceptos" Name="menuConceptos" Click="menuConceptos_Click"/>
             <MenuItem Header="Salarios de Empleados" Name="menuSalarios" Click="menuSalarios_Click"/>
+            <MenuItem Header="Asignacion de turnos" Name="menuAsignaTurnos" Click="menuAsignaTurnos_Click"/>
         </MenuItem>
         <MenuItem Header="Anticipo Salarial">
             <MenuItem Header="Cargar Solicitud" Name="menuAdSalCargar"/>
