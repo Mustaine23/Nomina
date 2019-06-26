@@ -9,7 +9,7 @@
     <Menu Name="MenuPrincipal">
         <MenuItem Header="Mantenimientos">
             <MenuItem Header="Empleados" Name="menuEmpleados" Click="menuEmpleados_Click"/>
-            <MenuItem Header="Turnos/Horarios" Name="menuTurnos"/>
+            <MenuItem Header="Turnos/Horarios" Name="menuTurnos" Click="menuTurnos_Click"/>
             <MenuItem Header="Conceptos" Name="menuConceptos" Click="menuConceptos_Click"/>
             <MenuItem Header="Salarios de Empleados" Name="menuSalarios" Click="menuSalarios_Click"/>
         </MenuItem>
@@ -26,8 +26,7 @@
         <MenuItem Header="Permisos">
             <MenuItem Header="Cargar Solicitud de Permisos" Name="menuPermisosCargar"/>
             <MenuItem Header="Ver Solicitudes de Permisos" Name="menuPermisosVer" Click="menuPermisosVer_Click"/>
-        </MenuItem>
-        
+        </MenuItem>        
         <MenuItem Header="Salir" Name="menuSalir" Click="menuSalir_Click"/>
     </Menu>
 </Window>

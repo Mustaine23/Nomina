@@ -77,26 +77,17 @@ namespace ProyectoNomina
         public string login()
         {
             string resultado = "OK";
-            bool existeUser = false;
-
-            var lstUsuarios = datos.Usuario.ToList();
-
-            foreach (Usuario user in lstUsuarios)
+            try
             {
-                if (user.Usuario1.ToString() == vUser)
-                {
-                    existeUser = true;
-                    if (user.Password.ToString() != vPass)
-                    {
-                        resultado = "Contraseña Incorrecta";
-                        return resultado;
-                    }
-                }
-            }
+                var lstUsuarios = datos.Usuario.ToList().Find(x => x.Usuario1 == vUser && x.Password == vPass);
 
-            if (!existeUser)
-                resultado = "Usuario ingresado no existe.";
-            
+                if (lstUsuarios == null)
+                    resultado = "Usuario/Contraseña incorrecta.";
+            }
+            catch (Exception ex)
+            {
+                resultado = "Ocurrió el siguiente error: " + ex.ToString();
+            }
 
             return resultado;
         }

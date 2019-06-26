@@ -64,5 +64,11 @@ namespace ProyectoNomina
             w_modificacionSalario venModiSal = new w_modificacionSalario();
             venModiSal.ShowDialog();
         }
+
+        private void menuTurnos_Click(object sender, RoutedEventArgs e)
+        {
+            W_turno venTurno = new W_turno();
+            venTurno.ShowDialog();
+        }
     }
 }
