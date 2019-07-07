@@ -83,6 +83,8 @@ namespace ProyectoNomina
 
                 if (lstUsuarios == null)
                     resultado = "Usuario/Contraseña incorrecta.";
+
+                ProyectoNomina.Properties.Settings.Default.usuarioLogin = lstUsuarios.Id_Usuario;
             }
             catch (Exception ex)
             {

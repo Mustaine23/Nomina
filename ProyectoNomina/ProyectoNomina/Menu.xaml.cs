@@ -76,5 +76,11 @@ namespace ProyectoNomina
             w_AsignacionTurnos ss = new w_AsignacionTurnos();
             ss.ShowDialog();
         }
+
+        private void menuLiquidacion_Click(object sender, RoutedEventArgs e)
+        {
+            w_Liquidacion asd = new w_Liquidacion();
+            asd.ShowDialog();
+        }
     }
 }

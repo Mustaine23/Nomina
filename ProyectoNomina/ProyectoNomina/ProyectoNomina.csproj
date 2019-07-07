@@ -137,6 +137,9 @@
     <Compile Include="w_Empleado.xaml.cs">
       <DependentUpon>w_Empleado.xaml</DependentUpon>
     </Compile>
+    <Compile Include="w_Liquidacion.xaml.cs">
+      <DependentUpon>w_Liquidacion.xaml</DependentUpon>
+    </Compile>
     <Compile Include="w_modificacionSalario.xaml.cs">
       <DependentUpon>w_modificacionSalario.xaml</DependentUpon>
     </Compile>
@@ -184,6 +187,10 @@
     <Page Include="w_Empleado.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="w_Liquidacion.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="w_modificacionSalario.xaml">
       <SubType>Designer</SubType>
