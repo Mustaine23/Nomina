@@ -140,6 +140,9 @@
     <Compile Include="w_Liquidacion.xaml.cs">
       <DependentUpon>w_Liquidacion.xaml</DependentUpon>
     </Compile>
+    <Compile Include="w_LiquidacionConcepto.xaml.cs">
+      <DependentUpon>w_LiquidacionConcepto.xaml</DependentUpon>
+    </Compile>
     <Compile Include="w_modificacionSalario.xaml.cs">
       <DependentUpon>w_modificacionSalario.xaml</DependentUpon>
     </Compile>
@@ -189,6 +192,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="w_Liquidacion.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="w_LiquidacionConcepto.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -15,6 +15,9 @@
             <MenuItem Header="Asignacion de turnos" Name="menuAsignaTurnos" Click="menuAsignaTurnos_Click"/>
             <MenuItem Header="Liquidación Mensual" Name="menuLiquidacion" Click="menuLiquidacion_Click"/>
         </MenuItem>
+        <MenuItem Header="Liquidaciones Mensuales">
+            <MenuItem Header="Cargar Conceptos" Name="menuCargarConceptos" Click="menuCargarConceptos_Click"/>
+        </MenuItem>
         <MenuItem Header="Anticipo Salarial">
             <MenuItem Header="Cargar Solicitud" Name="menuAdSalCargar"/>
             <MenuItem Header="Ver Solicitudes" Name="menuAdSalVer" Click="menuAdSalVer_Click"/>

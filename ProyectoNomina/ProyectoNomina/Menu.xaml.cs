@@ -82,5 +82,11 @@ namespace ProyectoNomina
             w_Liquidacion asd = new w_Liquidacion();
             asd.ShowDialog();
         }
+
+        private void menuCargarConceptos_Click(object sender, RoutedEventArgs e)
+        {
+            w_LiquidacionConcepto qq = new w_LiquidacionConcepto();
+            qq.ShowDialog();
+        }
     }
 }
