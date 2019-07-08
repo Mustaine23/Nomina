@@ -35,6 +35,6 @@
         <Button x:Name="btnLimpiar" Content="Limpiar" Canvas.Left="10" Canvas.Top="254" Width="93" RenderTransformOrigin="0.104,0.303"/>
         <Button x:Name="btnAgregar" Content="Agregar" Canvas.Left="113" Canvas.Top="254" Width="93" Click="btnAgregar_Click"/>
         <Button x:Name="btnModificar" Content="Modificar" Canvas.Left="221" Canvas.Top="254" Width="103"/>
-        <Button x:Name="btnEliminar" Content="Eliminar" Canvas.Left="329" Canvas.Top="254" Width="91"/>
+        <Button x:Name="btnEliminar" Content="Eliminar" Canvas.Left="329" Canvas.Top="254" Width="91" Click="btnEliminar_Click"/>
     </Canvas>
 </Window>
