@@ -65,12 +65,19 @@ namespace ProyectoNomina
         private void cargarEmpleados()
         {
             var lstUsuarios = datos.Empleado.ToList();
-            dgEmpleados.ItemsSource = lstUsuarios;
+            cboEmpleado.ItemsSource = lstUsuarios;
+            cboEmpleado.DisplayMemberPath = "Nombres";
+            cboEmpleado.SelectedValuePath = "Id_Empleado";
+
+            var lstConceptos = datos.Concepto.ToList();
+            cboConcepto.ItemsSource = lstConceptos;
+            cboConcepto.DisplayMemberPath = "Descripcion";
+            cboConcepto.SelectedValuePath = "Id_Concepto";
         }
 
         private void limpiar()
         {
-            txtEmpleado.Text = txtLiquidacionSeleccionada.Text = txtMonto.Text = string.Empty;
+            txtLiquidacionSeleccionada.Text = txtMonto.Text = string.Empty;
         }
 
         private void btnAgregar_Click(object sender, RoutedEventArgs e)
@@ -81,7 +88,7 @@ namespace ProyectoNomina
                 {
                     Liquidacion_Mensual_Detalle lmd = new Liquidacion_Mensual_Detalle();
                     lmd.Concepto = (Concepto)cboConcepto.SelectedItem;
-                    lmd.Empleado = empleadoSeleccionado;
+                    lmd.Empleado = (Empleado)cboEmpleado.SelectedItem;
                     lmd.Liquidacion_Mensual = liquidacionSeleccionada;
 
                     int vMonto = 0;
@@ -121,6 +128,11 @@ namespace ProyectoNomina
                 MessageBox.Show("Debe seleccionar si el concepto es positivo o negativo.", "ERROR", MessageBoxButton.OK, MessageBoxImage.Error);
                 retorno = false;
             }
+            if (txtLiquidacionSeleccionada.Text == "")
+            {
+                MessageBox.Show("Debe seleccionar una liquidacion", "ERROR", MessageBoxButton.OK, MessageBoxImage.Error);
+                retorno = false;
+            }
             return retorno;
         }
 
@@ -135,12 +147,6 @@ namespace ProyectoNomina
                 MessageBox.Show("Detalle Eliminado correctamente. ", "PROCESO COMPLETADO", MessageBoxButton.OK, MessageBoxImage.Information);
                 limpiar();
             }
-        }
-
-        private void dgEmpleados_MouseDoubleClick(object sender, MouseButtonEventArgs e)
-        {
-            empleadoSeleccionado = (Empleado)dgEmpleados.SelectedItem;
-            txtEmpleado.Text = empleadoSeleccionado.Nro_Documento + " - " + empleadoSeleccionado.Nombres;
         }
     }
 }

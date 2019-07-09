@@ -7,25 +7,23 @@
         mc:Ignorable="d"
         Title="w_LiquidacionConcepto" Height="510.041" Width="874.172" Loaded="Window_Loaded">
     <Canvas RenderTransformOrigin="0.481,0.517">
-        <Label x:Name="label" Content="Liquidaciones" Canvas.Left="10" Canvas.Top="27"/>
-        <DataGrid x:Name="dgLiquidaciones" Canvas.Left="10" Canvas.Top="53" Height="120" Width="848" MouseDoubleClick="dgLiquidaciones_MouseDoubleClick"/>
+        <Label x:Name="label" Content="Liquidaciones" Canvas.Left="382" Canvas.Top="54"/>
+        <DataGrid x:Name="dgLiquidaciones" Canvas.Left="382" Canvas.Top="79" Height="177" Width="464" MouseDoubleClick="dgLiquidaciones_MouseDoubleClick"/>
         <Label x:Name="label1" Content="Carga de Conceptos por Liquidaciones" Canvas.Left="262" RenderTransformOrigin="0.578,0.438" FontSize="20" Canvas.Top="5"/>
-        <Button x:Name="btnActualizarLiquidaciones" Content="Actualizar" Height="29" Canvas.Left="756" Canvas.Top="19" Width="102" Click="btnActualizarLiquidaciones_Click"/>
-        <Label x:Name="label2" Content="Concepto:" Canvas.Left="27" Canvas.Top="205"/>
-        <ComboBox x:Name="cboConcepto" Canvas.Left="106" Canvas.Top="208" Width="147"/>
-        <Label x:Name="label3" Content="Liquidación:" Canvas.Left="15" Canvas.Top="179" RenderTransformOrigin="0.578,0.617"/>
-        <TextBox x:Name="txtLiquidacionSeleccionada" Height="23" Canvas.Left="106" TextWrapping="Wrap" Text="" Canvas.Top="180" Width="146"/>
-        <Label x:Name="label4" Content="Monto:" Canvas.Left="43" Canvas.Top="230"/>
-        <TextBox x:Name="txtMonto" Height="23" Canvas.Left="106" TextWrapping="Wrap" Text="" Canvas.Top="235" Width="76"/>
-        <RadioButton x:Name="radioNegativo" Content="Negativo" Canvas.Left="187" Canvas.Top="241"/>
-        <RadioButton x:Name="radioPositivo" Content="Positivo" Canvas.Left="262" Canvas.Top="241"/>
-        <Label x:Name="label5" Content="Empleado:" Canvas.Left="26" Canvas.Top="260"/>
-        <TextBox x:Name="txtEmpleado" Height="23" Canvas.Left="106" TextWrapping="Wrap" Text="" Canvas.Top="263" Width="147"/>
-        <DataGrid x:Name="dgConceptos" Canvas.Left="10" Canvas.Top="291" Height="180" Width="848"/>
-        <DataGrid x:Name="dgEmpleados" Height="106" Canvas.Left="454" Canvas.Top="180" Width="404" MouseDoubleClick="dgEmpleados_MouseDoubleClick"/>
-        <Button x:Name="btnAgregar" Content="Agregar" Canvas.Left="348" Canvas.Top="184" Width="93" Height="28" Click="btnAgregar_Click"/>
-        <Button x:Name="btnEliminar" Content="Eliminar" Canvas.Left="348" Canvas.Top="216" Width="93" Height="32" Click="btnEliminar_Click"/>
-        <Button x:Name="btnLimpiar" Content="Limpiar" Canvas.Left="348" Canvas.Top="253" Width="93" Height="33"/>
+        <Label x:Name="label2" Content="Concepto:" Canvas.Left="19" Canvas.Top="105"/>
+        <ComboBox x:Name="cboConcepto" Canvas.Left="90" Canvas.Top="105" Width="235"/>
+        <Label x:Name="label3" Content="Liquidación:" Canvas.Left="10" Canvas.Top="188" RenderTransformOrigin="0.578,0.617"/>
+        <TextBox x:Name="txtLiquidacionSeleccionada" Height="23" Canvas.Left="107" TextWrapping="Wrap" Text="" Canvas.Top="188" Width="218"/>
+        <Label x:Name="label4" Content="Monto:" Canvas.Left="35" Canvas.Top="153"/>
+        <TextBox x:Name="txtMonto" Height="23" Canvas.Left="90" TextWrapping="Wrap" Text="" Canvas.Top="153" Width="76"/>
+        <RadioButton x:Name="radioNegativo" Content="Negativo" Canvas.Left="183" Canvas.Top="156"/>
+        <RadioButton x:Name="radioPositivo" Content="Positivo" Canvas.Left="262" Canvas.Top="156"/>
+        <Label x:Name="label5" Content="Empleado:" Canvas.Left="19" Canvas.Top="59"/>
+        <DataGrid x:Name="dgConceptos" Canvas.Left="10" Canvas.Top="286" Height="185" Width="848"/>
+        <Button x:Name="btnAgregar" Content="Agregar" Canvas.Left="19" Canvas.Top="228" Width="93" Height="28" Click="btnAgregar_Click"/>
+        <Button x:Name="btnEliminar" Content="Eliminar" Canvas.Left="127" Canvas.Top="226" Width="93" Height="32" Click="btnEliminar_Click"/>
+        <Button x:Name="btnLimpiar" Content="Limpiar" Canvas.Left="232" Canvas.Top="225" Width="93" Height="33"/>
+        <ComboBox x:Name="cboEmpleado" Canvas.Left="90" Canvas.Top="58" Width="235"/>
 
     </Canvas>
 </Window>
