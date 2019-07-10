@@ -1,0 +1,24 @@
+﻿<Window x:Class="ProyectoNomina.w_detalleLiquidacionUsuario"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ProyectoNomina"
+        mc:Ignorable="d"
+        Title="w_detalleLiquidacionUsuario" Height="502.512" Width="801.105" Loaded="Window_Loaded">
+    <Canvas>
+        <Label x:Name="label" Content="Empleado" Canvas.Left="24" Canvas.Top="26"/>
+        <ComboBox x:Name="cboEmpleado" Canvas.Left="91" Canvas.Top="22" Width="172" Height="28"/>
+        <Label x:Name="label1" Content="Liquidacion" Canvas.Left="309" Canvas.Top="22"/>
+        <ComboBox x:Name="cboLiquidacion" Canvas.Left="384" Canvas.Top="20" Width="196"/>
+        <Button x:Name="btnVerDetalle" Content="Ver Detalle" Canvas.Left="649" Canvas.Top="20" Width="122" Click="btnVerDetalle_Click"/>
+        <DataGrid x:Name="dgDetalle" Canvas.Left="10" Canvas.Top="66" Height="359" Width="774"/>
+        <Label x:Name="label2" Content="Ingresos:" Canvas.Left="24" Canvas.Top="437"/>
+        <Label x:Name="lblIngresos" Content="5000000" Canvas.Left="82" Canvas.Top="437" FontWeight="Bold" Foreground="#DD1EB13F"/>
+        <Label x:Name="label3" Content="Egresos: " Canvas.Left="151" Canvas.Top="437"/>
+        <Label x:Name="lblEgresos" Content="560000" Canvas.Left="212" Canvas.Top="437" Foreground="#DDFF0000" FontWeight="Bold"/>
+        <Label x:Name="lbl" Content="Total:" Canvas.Left="318" Canvas.Top="437"/>
+        <Label x:Name="label5" Content="0" Canvas.Left="384" Canvas.Top="437"/>
+
+    </Canvas>
+</Window>

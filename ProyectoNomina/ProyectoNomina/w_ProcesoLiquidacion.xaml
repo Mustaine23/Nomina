@@ -1,0 +1,15 @@
+﻿<Window x:Class="ProyectoNomina.w_ProcesoLiquidacion"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ProyectoNomina"
+        mc:Ignorable="d"
+        Title="w_ProcesoLiquidacion" Height="386.507" Width="683.836" Loaded="Window_Loaded">
+    <Canvas>
+        <DataGrid x:Name="dgLiquidaciones" Height="270" Canvas.Left="10" Canvas.Top="34" Width="658"/>
+        <Button x:Name="btnProcesar" Content="Procesar Liquidación" Canvas.Left="233" Canvas.Top="309" Width="196" Click="btnProcesar_Click"/>
+        <Label x:Name="label" Content="PROCESAR LIQUIDACIONES MENSUALES" Canvas.Left="203" Canvas.Top="3"/>
+
+    </Canvas>
+</Window>
