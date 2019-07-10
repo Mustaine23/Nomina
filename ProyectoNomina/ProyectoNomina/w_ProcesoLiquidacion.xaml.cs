@@ -55,7 +55,9 @@ namespace ProyectoNomina
                         double vIps = 0;
                         var detalleLiquidacion = ee.Liquidacion_Mensual_Detalle.ToList().FindAll(x => x.Liquidacion_Id == dd.Id_Liquidacion);
 
-                        if (detalleLiquidacion != null)
+                        vIngreso = vIngreso + ee.Salario_Basico;
+
+                        if (detalleLiquidacion.Count > 0)
                         {
                             foreach (Liquidacion_Mensual_Detalle det in detalleLiquidacion)
                             {
@@ -82,7 +84,7 @@ namespace ProyectoNomina
 
                         var adelantos = ee.Anticipo.ToList().FindAll(x => DateTime.Parse(x.Fecha_Definicion.ToString()).Month == dd.Mes && DateTime.Parse(x.Fecha_Definicion.ToString()).Year == dd.Anho && x.Estado == "A");
 
-                        if (adelantos != null)
+                        if (adelantos.Count > 0)
                         {
                             int vAnticipo = 0;
                             foreach (Anticipo an in adelantos)
@@ -102,7 +104,20 @@ namespace ProyectoNomina
                         }
 
                         vTotal = vIngreso - vEgresos;
+                        ResumenLiquidacion resumen = new ResumenLiquidacion();
+                        resumen.Empleado = ee;
+                        resumen.Liquidacion_Mensual = dd;
+                        resumen.MontoEgreso = vEgresos;
+                        resumen.MontoIngreso = vIngreso;
+
+                        datos.ResumenLiquidacion.Add(resumen);
+                        datos.SaveChanges();
                     }
+
+                    dd.Estado = "C";
+                    datos.Entry(dd).State = System.Data.Entity.EntityState.Modified;
+                    datos.SaveChanges();
+                    cargarGrilla();
                 }
                 else
                 {

@@ -88,6 +88,16 @@
           <Property Name="Estado" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="Observaciones" Type="varchar" MaxLength="1000" />
         </EntityType>
+        <EntityType Name="ResumenLiquidacion">
+          <Key>
+            <PropertyRef Name="Id_Liquidacion" />
+            <PropertyRef Name="Id_Empleado" />
+          </Key>
+          <Property Name="Id_Liquidacion" Type="int" Nullable="false" />
+          <Property Name="Id_Empleado" Type="int" Nullable="false" />
+          <Property Name="MontoIngreso" Type="int" />
+          <Property Name="MontoEgreso" Type="int" />
+        </EntityType>
         <EntityType Name="Turno">
           <Key>
             <PropertyRef Name="Id_Turno" />
@@ -235,6 +245,30 @@ advertencia 6002: La tabla o vista 'Nomina.dbo.Vacaciones' no tiene definida nin
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="fk_Id_Empleado">
+          <End Role="Empleado" Type="Self.Empleado" Multiplicity="1" />
+          <End Role="ResumenLiquidacion" Type="Self.ResumenLiquidacion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Empleado">
+              <PropertyRef Name="Id_Empleado" />
+            </Principal>
+            <Dependent Role="ResumenLiquidacion">
+              <PropertyRef Name="Id_Empleado" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_Id_Liquidacion">
+          <End Role="Liquidacion_Mensual" Type="Self.Liquidacion_Mensual" Multiplicity="1" />
+          <End Role="ResumenLiquidacion" Type="Self.ResumenLiquidacion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Liquidacion_Mensual">
+              <PropertyRef Name="Id_Liquidacion" />
+            </Principal>
+            <Dependent Role="ResumenLiquidacion">
+              <PropertyRef Name="Id_Liquidacion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Permisos_Empleado">
           <End Role="Empleado" Type="Self.Empleado" Multiplicity="1" />
           <End Role="Permisos" Type="Self.Permisos" Multiplicity="*" />
@@ -267,6 +301,7 @@ advertencia 6002: La tabla o vista 'Nomina.dbo.Vacaciones' no tiene definida nin
           <EntitySet Name="Liquidacion_Mensual" EntityType="Self.Liquidacion_Mensual" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Liquidacion_Mensual_Detalle" EntityType="Self.Liquidacion_Mensual_Detalle" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Permisos" EntityType="Self.Permisos" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ResumenLiquidacion" EntityType="Self.ResumenLiquidacion" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Turno" EntityType="Self.Turno" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Usuario" EntityType="Self.Usuario" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Vacaciones" EntityType="Self.Vacaciones" store:Type="Tables" store:Schema="dbo">
@@ -316,6 +351,14 @@ advertencia 6002: La tabla o vista 'Nomina.dbo.Vacaciones' no tiene definida nin
           <AssociationSet Name="FK_Empleado_Usuario" Association="Self.FK_Empleado_Usuario">
             <End Role="Empleado" EntitySet="Empleado" />
             <End Role="Usuario" EntitySet="Usuario" />
+          </AssociationSet>
+          <AssociationSet Name="fk_Id_Empleado" Association="Self.fk_Id_Empleado">
+            <End Role="Empleado" EntitySet="Empleado" />
+            <End Role="ResumenLiquidacion" EntitySet="ResumenLiquidacion" />
+          </AssociationSet>
+          <AssociationSet Name="fk_Id_Liquidacion" Association="Self.fk_Id_Liquidacion">
+            <End Role="Liquidacion_Mensual" EntitySet="Liquidacion_Mensual" />
+            <End Role="ResumenLiquidacion" EntitySet="ResumenLiquidacion" />
           </AssociationSet>
           <AssociationSet Name="FK_Permisos_Empleado" Association="Self.FK_Permisos_Empleado">
             <End Role="Empleado" EntitySet="Empleado" />
@@ -374,6 +417,7 @@ advertencia 6002: La tabla o vista 'Nomina.dbo.Vacaciones' no tiene definida nin
           <NavigationProperty Name="Turno" Relationship="Self.FK__Empleado__Turno___1FCDBCEB" FromRole="Empleado" ToRole="Turno" />
           <NavigationProperty Name="Liquidacion_Mensual_Detalle" Relationship="Self.FK__Liquidaci__Emple__286302EC" FromRole="Empleado" ToRole="Liquidacion_Mensual_Detalle" />
           <NavigationProperty Name="Usuario" Relationship="Self.FK_Empleado_Usuario" FromRole="Empleado" ToRole="Usuario" />
+          <NavigationProperty Name="ResumenLiquidacion" Relationship="Self.fk_Id_Empleado" FromRole="Empleado" ToRole="ResumenLiquidacion" />
           <NavigationProperty Name="Permisos" Relationship="Self.FK_Permisos_Empleado" FromRole="Empleado" ToRole="Permisos" />
           <NavigationProperty Name="Vacaciones" Relationship="Self.FK_Vacaciones_Empleado" FromRole="Empleado" ToRole="Vacaciones" />
         </EntityType>
@@ -402,6 +446,7 @@ advertencia 6002: La tabla o vista 'Nomina.dbo.Vacaciones' no tiene definida nin
           <Property Name="Estado" Type="String" MaxLength="1" FixedLength="false" Unicode="false" Nullable="false" />
           <NavigationProperty Name="Liquidacion_Mensual_Detalle" Relationship="Self.FK__Liquidaci__Liqui__276EDEB3" FromRole="Liquidacion_Mensual" ToRole="Liquidacion_Mensual_Detalle" />
           <NavigationProperty Name="Usuario" Relationship="Self.FK__Liquidaci__Usuar__239E4DCF" FromRole="Liquidacion_Mensual" ToRole="Usuario" />
+          <NavigationProperty Name="ResumenLiquidacion" Relationship="Self.fk_Id_Liquidacion" FromRole="Liquidacion_Mensual" ToRole="ResumenLiquidacion" />
         </EntityType>
         <EntityType Name="Liquidacion_Mensual_Detalle">
           <Key>
@@ -430,6 +475,18 @@ advertencia 6002: La tabla o vista 'Nomina.dbo.Vacaciones' no tiene definida nin
           <Property Name="Estado" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Observaciones" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="Empleado" Relationship="Self.FK_Permisos_Empleado" FromRole="Permisos" ToRole="Empleado" />
+        </EntityType>
+        <EntityType Name="ResumenLiquidacion">
+          <Key>
+            <PropertyRef Name="Id_Liquidacion" />
+            <PropertyRef Name="Id_Empleado" />
+          </Key>
+          <Property Name="Id_Liquidacion" Type="Int32" Nullable="false" />
+          <Property Name="Id_Empleado" Type="Int32" Nullable="false" />
+          <Property Name="MontoIngreso" Type="Int32" />
+          <Property Name="MontoEgreso" Type="Int32" />
+          <NavigationProperty Name="Empleado" Relationship="Self.fk_Id_Empleado" FromRole="ResumenLiquidacion" ToRole="Empleado" />
+          <NavigationProperty Name="Liquidacion_Mensual" Relationship="Self.fk_Id_Liquidacion" FromRole="ResumenLiquidacion" ToRole="Liquidacion_Mensual" />
         </EntityType>
         <EntityType Name="Turno">
           <Key>
@@ -545,6 +602,18 @@ advertencia 6002: La tabla o vista 'Nomina.dbo.Vacaciones' no tiene definida nin
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="fk_Id_Empleado">
+          <End Role="Empleado" Type="Self.Empleado" Multiplicity="1" />
+          <End Role="ResumenLiquidacion" Type="Self.ResumenLiquidacion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Empleado">
+              <PropertyRef Name="Id_Empleado" />
+            </Principal>
+            <Dependent Role="ResumenLiquidacion">
+              <PropertyRef Name="Id_Empleado" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Permisos_Empleado">
           <End Role="Empleado" Type="Self.Empleado" Multiplicity="1" />
           <End Role="Permisos" Type="Self.Permisos" Multiplicity="*" />
@@ -605,6 +674,18 @@ advertencia 6002: La tabla o vista 'Nomina.dbo.Vacaciones' no tiene definida nin
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="fk_Id_Liquidacion">
+          <End Role="Liquidacion_Mensual" Type="Self.Liquidacion_Mensual" Multiplicity="1" />
+          <End Role="ResumenLiquidacion" Type="Self.ResumenLiquidacion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Liquidacion_Mensual">
+              <PropertyRef Name="Id_Liquidacion" />
+            </Principal>
+            <Dependent Role="ResumenLiquidacion">
+              <PropertyRef Name="Id_Liquidacion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityContainer Name="ConexionDB" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Anticipo" EntityType="Self.Anticipo" />
           <EntitySet Name="Concepto" EntityType="Self.Concepto" />
@@ -613,6 +694,7 @@ advertencia 6002: La tabla o vista 'Nomina.dbo.Vacaciones' no tiene definida nin
           <EntitySet Name="Liquidacion_Mensual" EntityType="Self.Liquidacion_Mensual" />
           <EntitySet Name="Liquidacion_Mensual_Detalle" EntityType="Self.Liquidacion_Mensual_Detalle" />
           <EntitySet Name="Permisos" EntityType="Self.Permisos" />
+          <EntitySet Name="ResumenLiquidacion" EntityType="Self.ResumenLiquidacion" />
           <EntitySet Name="Turno" EntityType="Self.Turno" />
           <EntitySet Name="Usuario" EntityType="Self.Usuario" />
           <EntitySet Name="Vacaciones" EntityType="Self.Vacaciones" />
@@ -640,6 +722,10 @@ advertencia 6002: La tabla o vista 'Nomina.dbo.Vacaciones' no tiene definida nin
             <End Role="Empleado" EntitySet="Empleado" />
             <End Role="Usuario" EntitySet="Usuario" />
           </AssociationSet>
+          <AssociationSet Name="fk_Id_Empleado" Association="Self.fk_Id_Empleado">
+            <End Role="Empleado" EntitySet="Empleado" />
+            <End Role="ResumenLiquidacion" EntitySet="ResumenLiquidacion" />
+          </AssociationSet>
           <AssociationSet Name="FK_Permisos_Empleado" Association="Self.FK_Permisos_Empleado">
             <End Role="Empleado" EntitySet="Empleado" />
             <End Role="Permisos" EntitySet="Permisos" />
@@ -659,6 +745,10 @@ advertencia 6002: La tabla o vista 'Nomina.dbo.Vacaciones' no tiene definida nin
           <AssociationSet Name="FK__Liquidaci__Usuar__239E4DCF" Association="Self.FK__Liquidaci__Usuar__239E4DCF">
             <End Role="Usuario" EntitySet="Usuario" />
             <End Role="Liquidacion_Mensual" EntitySet="Liquidacion_Mensual" />
+          </AssociationSet>
+          <AssociationSet Name="fk_Id_Liquidacion" Association="Self.fk_Id_Liquidacion">
+            <End Role="Liquidacion_Mensual" EntitySet="Liquidacion_Mensual" />
+            <End Role="ResumenLiquidacion" EntitySet="ResumenLiquidacion" />
           </AssociationSet>
         </EntityContainer>
       </Schema>
@@ -754,6 +844,16 @@ advertencia 6002: La tabla o vista 'Nomina.dbo.Vacaciones' no tiene definida nin
                 <ScalarProperty Name="Fecha_Solicitud" ColumnName="Fecha_Solicitud" />
                 <ScalarProperty Name="Estado" ColumnName="Estado" />
                 <ScalarProperty Name="Observaciones" ColumnName="Observaciones" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ResumenLiquidacion">
+            <EntityTypeMapping TypeName="NominaModel.ResumenLiquidacion">
+              <MappingFragment StoreEntitySet="ResumenLiquidacion">
+                <ScalarProperty Name="Id_Liquidacion" ColumnName="Id_Liquidacion" />
+                <ScalarProperty Name="Id_Empleado" ColumnName="Id_Empleado" />
+                <ScalarProperty Name="MontoIngreso" ColumnName="MontoIngreso" />
+                <ScalarProperty Name="MontoEgreso" ColumnName="MontoEgreso" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

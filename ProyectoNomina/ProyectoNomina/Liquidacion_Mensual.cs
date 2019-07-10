@@ -18,6 +18,7 @@ namespace ProyectoNomina
         public Liquidacion_Mensual()
         {
             this.Liquidacion_Mensual_Detalle = new HashSet<Liquidacion_Mensual_Detalle>();
+            this.ResumenLiquidacion = new HashSet<ResumenLiquidacion>();
         }
     
         public int Id_Liquidacion { get; set; }
@@ -30,5 +31,7 @@ namespace ProyectoNomina
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Liquidacion_Mensual_Detalle> Liquidacion_Mensual_Detalle { get; set; }
         public virtual Usuario Usuario { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<ResumenLiquidacion> ResumenLiquidacion { get; set; }
     }
 }

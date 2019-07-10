@@ -30,7 +30,26 @@ namespace ProyectoNomina
         {
             if ((cboEmpleado.SelectedItem != null) &&  (cboLiquidacion.SelectedItem != null))
             {
+                Empleado ee = (Empleado)cboEmpleado.SelectedItem;
+                Liquidacion_Mensual ll = (Liquidacion_Mensual)cboLiquidacion.SelectedItem;
 
+                var liquidacionDetalle = datos.Liquidacion_Mensual_Detalle.ToList().FindAll(x => x.Liquidacion_Id == ll.Id_Liquidacion && x.Empleado_Id == ee.Id_Empleado);
+                dgDetalle.ItemsSource = liquidacionDetalle;
+
+                var resumenLiquidacion = datos.ResumenLiquidacion.ToList().FindAll(x => x.Id_Liquidacion == ll.Id_Liquidacion && x.Id_Empleado == ee.Id_Empleado);
+                if (resumenLiquidacion.Count == 1)
+                {
+                    foreach (ResumenLiquidacion rr in resumenLiquidacion)
+                    {
+                        lblEgresos.Content = rr.MontoEgreso.ToString();
+                        lblIngresos.Content = rr.MontoIngreso.ToString();
+                        lblTotal.Content = (rr.MontoIngreso - rr.MontoEgreso).ToString();
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Error, favor comuniquese con informatica.", "ERROR", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
             }
             else
             {

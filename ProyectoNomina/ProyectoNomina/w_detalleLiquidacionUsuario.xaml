@@ -14,11 +14,12 @@
         <Button x:Name="btnVerDetalle" Content="Ver Detalle" Canvas.Left="649" Canvas.Top="20" Width="122" Click="btnVerDetalle_Click"/>
         <DataGrid x:Name="dgDetalle" Canvas.Left="10" Canvas.Top="66" Height="359" Width="774"/>
         <Label x:Name="label2" Content="Ingresos:" Canvas.Left="24" Canvas.Top="437"/>
-        <Label x:Name="lblIngresos" Content="5000000" Canvas.Left="82" Canvas.Top="437" FontWeight="Bold" Foreground="#DD1EB13F"/>
-        <Label x:Name="label3" Content="Egresos: " Canvas.Left="151" Canvas.Top="437"/>
-        <Label x:Name="lblEgresos" Content="560000" Canvas.Left="212" Canvas.Top="437" Foreground="#DDFF0000" FontWeight="Bold"/>
-        <Label x:Name="lbl" Content="Total:" Canvas.Left="318" Canvas.Top="437"/>
-        <Label x:Name="label5" Content="0" Canvas.Left="384" Canvas.Top="437"/>
+        <Label x:Name="lblIngresos" Content="0" Canvas.Left="82" Canvas.Top="437" FontWeight="Bold" Foreground="#DD1EB13F"/>
+        <Label x:Name="label3" Content="Egresos: " Canvas.Left="165" Canvas.Top="437"/>
+        <Label x:Name="lblEgresos" Content="0" Canvas.Left="226" Canvas.Top="437" Foreground="#DDFF0000" FontWeight="Bold"/>
+        <Label x:Name="lbl" Content="Total:" Canvas.Left="348" Canvas.Top="437"/>
+        <Label x:Name="lblTotal" Content="0" Canvas.Left="414" Canvas.Top="437"/>
+        <Button x:Name="btnLimpiar" Content="Limpiar" Canvas.Left="664" Canvas.Top="433" Width="107"/>
 
     </Canvas>
 </Window>

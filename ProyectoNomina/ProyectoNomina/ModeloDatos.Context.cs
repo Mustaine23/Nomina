@@ -32,6 +32,7 @@ namespace ProyectoNomina
         public virtual DbSet<Liquidacion_Mensual> Liquidacion_Mensual { get; set; }
         public virtual DbSet<Liquidacion_Mensual_Detalle> Liquidacion_Mensual_Detalle { get; set; }
         public virtual DbSet<Permisos> Permisos { get; set; }
+        public virtual DbSet<ResumenLiquidacion> ResumenLiquidacion { get; set; }
         public virtual DbSet<Turno> Turno { get; set; }
         public virtual DbSet<Usuario> Usuario { get; set; }
         public virtual DbSet<Vacaciones> Vacaciones { get; set; }
