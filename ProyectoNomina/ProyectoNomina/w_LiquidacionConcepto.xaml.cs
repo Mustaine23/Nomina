@@ -69,7 +69,7 @@ namespace ProyectoNomina
             cboEmpleado.DisplayMemberPath = "Nombres";
             cboEmpleado.SelectedValuePath = "Id_Empleado";
 
-            var lstConceptos = datos.Concepto.ToList().FindAll(X => X.Descripcion != "IPS");
+            var lstConceptos = datos.Concepto.ToList().FindAll(X => X.Descripcion != "IPS" && X.Descripcion != "Anticipo");
             cboConcepto.ItemsSource = lstConceptos;
             cboConcepto.DisplayMemberPath = "Descripcion";
             cboConcepto.SelectedValuePath = "Id_Concepto";
@@ -104,6 +104,7 @@ namespace ProyectoNomina
                     datos.SaveChanges();
 
                     MessageBox.Show("Detalle de Liquidacion insertado correctamente: ", "Proceso Completado", MessageBoxButton.OK, MessageBoxImage.Information);
+                    getDetalleLiquidacion();
                     limpiar();
                 }
                 catch (Exception ex)
