@@ -52,7 +52,7 @@ namespace ProyectoNomina
                         int vIngreso = 0;
                         int vEgresos = 0;
                         int vTotal = 0;
-                        double vIps = 0;
+                        int vIps = 0;
                         var detalleLiquidacion = ee.Liquidacion_Mensual_Detalle.ToList().FindAll(x => x.Liquidacion_Id == dd.Id_Liquidacion);
 
                         vIngreso = vIngreso + ee.Salario_Basico;
@@ -72,12 +72,12 @@ namespace ProyectoNomina
                             }
                         }
 
-                        vIps = vIngreso * 0.09;
+                        vIps = (vIngreso * 9) / 100;
                         Liquidacion_Mensual_Detalle nuevoIps = new Liquidacion_Mensual_Detalle();
                         nuevoIps.Concepto_Id = 1;
                         nuevoIps.Empleado = ee;
                         nuevoIps.Liquidacion_Mensual = dd;
-                        nuevoIps.Monto = int.Parse((vIps * -1).ToString());
+                        nuevoIps.Monto = vIps * -1;
 
                         datos.Liquidacion_Mensual_Detalle.Add(nuevoIps);
                         datos.SaveChanges();
@@ -103,6 +103,7 @@ namespace ProyectoNomina
                             datos.SaveChanges();
                         }
 
+                        vEgresos = vEgresos + int.Parse(vIps.ToString());
                         vTotal = vIngreso - vEgresos;
                         ResumenLiquidacion resumen = new ResumenLiquidacion();
                         resumen.Empleado = ee;
@@ -117,6 +118,8 @@ namespace ProyectoNomina
                     dd.Estado = "C";
                     datos.Entry(dd).State = System.Data.Entity.EntityState.Modified;
                     datos.SaveChanges();
+
+                    MessageBox.Show("Se proceso la liquidación del mes: " + dd.Mes.ToString().PadLeft(2, '0') + "/" + dd.Anho.ToString(), "PROCESO COMPLETADO", MessageBoxButton.OK, MessageBoxImage.Information);
                     cargarGrilla();
                 }
                 else

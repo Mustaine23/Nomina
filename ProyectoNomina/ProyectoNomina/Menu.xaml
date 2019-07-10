@@ -22,7 +22,7 @@
             
         </MenuItem>
         <MenuItem Header="Anticipo Salarial">
-            <MenuItem Header="Cargar Solicitud" Name="menuAdSalCargar"/>
+            <MenuItem Header="Cargar Solicitud" Name="menuAdSalCargar" Click="menuAdSalCargar_Click"/>
             <MenuItem Header="Ver Solicitudes" Name="menuAdSalVer" Click="menuAdSalVer_Click"/>
         </MenuItem>
         

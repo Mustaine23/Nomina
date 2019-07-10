@@ -40,6 +40,8 @@ namespace ProyectoNomina
                 em.Fecha_Nacimiento = DateTime.Parse(dtpFechaNacimiento.Text);
                 em.Fecha_Incorporacion = DateTime.Parse(dtpFechaIncorporacion.Text);
                 em.Imagen_Perfil = imgPerfil.Source.ToString();
+                em.Salario_Basico = int.Parse(txtSalario.Text);
+
 
                 datos.Empleado.Add(em);
                 datos.SaveChanges();

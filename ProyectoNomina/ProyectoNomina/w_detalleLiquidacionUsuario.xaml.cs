@@ -66,8 +66,8 @@ namespace ProyectoNomina
 
             var lstConceptos = datos.Liquidacion_Mensual.ToList();
             cboLiquidacion.ItemsSource = lstConceptos;
-            cboLiquidacion.DisplayMemberPath = "Descripcion";
-            cboLiquidacion.SelectedValuePath = "Id_Concepto";
+            cboLiquidacion.DisplayMemberPath = "Id_Liquidacion";
+            cboLiquidacion.SelectedValuePath = "Id_Liquidacion";
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)

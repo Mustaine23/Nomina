@@ -69,7 +69,7 @@ namespace ProyectoNomina
             cboEmpleado.DisplayMemberPath = "Nombres";
             cboEmpleado.SelectedValuePath = "Id_Empleado";
 
-            var lstConceptos = datos.Concepto.ToList();
+            var lstConceptos = datos.Concepto.ToList().FindAll(X => X.Descripcion != "IPS");
             cboConcepto.ItemsSource = lstConceptos;
             cboConcepto.DisplayMemberPath = "Descripcion";
             cboConcepto.SelectedValuePath = "Id_Concepto";

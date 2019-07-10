@@ -100,5 +100,10 @@ namespace ProyectoNomina
             w_ProcesoLiquidacion dd = new w_ProcesoLiquidacion();
             dd.ShowDialog();
         }
+
+        private void menuAdSalCargar_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }
