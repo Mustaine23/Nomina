@@ -18,6 +18,8 @@
         <MenuItem Header="Liquidaciones Mensuales">
             <MenuItem Header="Cargar Conceptos" Name="menuCargarConceptos" Click="menuCargarConceptos_Click"/>
             <MenuItem Header="Detalle Conceptos/Montos" Name="menuDetalle" Click="menuDetalle_Click"/>
+            <MenuItem Header="Procesar Liquidación Mensual" Name="menuProceso" Click="menuProceso_Click"/>
+            
         </MenuItem>
         <MenuItem Header="Anticipo Salarial">
             <MenuItem Header="Cargar Solicitud" Name="menuAdSalCargar"/>

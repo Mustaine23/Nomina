@@ -94,5 +94,11 @@ namespace ProyectoNomina
             w_detalleLiquidacionUsuario qwerty = new w_detalleLiquidacionUsuario();
             qwerty.ShowDialog();
         }
+
+        private void menuProceso_Click(object sender, RoutedEventArgs e)
+        {
+            w_ProcesoLiquidacion dd = new w_ProcesoLiquidacion();
+            dd.ShowDialog();
+        }
     }
 }

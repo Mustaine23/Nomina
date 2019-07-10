@@ -43,8 +43,43 @@ namespace ProyectoNomina
             {
                 Liquidacion_Mensual dd = (Liquidacion_Mensual)dgLiquidaciones.SelectedItem;
 
-                if (dd.Estado.ToString() != "A")
+                if (dd.Estado.ToString() == "A")
                 {
+                    var lstEmpleado = datos.Empleado.ToList();
+
+                    foreach (Empleado ee in lstEmpleado)
+                    {
+                        int vIngreso = 0;
+                        int vEgresos = 0;
+                        int vTotal = 0;
+
+                        var detalleLiquidacion = ee.Liquidacion_Mensual_Detalle.ToList().FindAll(x => x.Liquidacion_Id == dd.Id_Liquidacion);
+
+                        if (detalleLiquidacion != null)
+                        {
+                            foreach (Liquidacion_Mensual_Detalle det in detalleLiquidacion)
+                            {
+                                if (det.Monto > 0)
+                                {
+                                    vIngreso = vIngreso + det.Monto;
+                                }
+                                else
+                                {
+                                    vEgresos = vEgresos + det.Monto * -1;
+                                }
+                            }
+                        }
+
+                        var adelantos = ee.Anticipo.ToList().FindAll(x => DateTime.Parse(x.Fecha_Definicion.ToString()).Month == dd.Mes && DateTime.Parse(x.Fecha_Definicion.ToString()).Year == dd.Anho && x.Estado == "A");
+
+                        if (adelantos != null)
+                        {
+                            foreach (Anticipo an in adelantos)
+                            {
+                                vEgresos = vEgresos + an.Monto_Aprobado;
+                            }
+                        }
+                    }
 
                 }
                 else
